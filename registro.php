@@ -8,7 +8,7 @@ $aux = 0;     //para contar cuántos datos coinciden con los ya ingresados de mo
 $auxMail = false;
 $auxU = false;
 foreach ($users as $k => $u) {  // revisa todos los datos del json y los compara con los recién ingresados y si coinciden suma números a $aux y si coinciden ya sea mail o nombre de usuario entonces directamente hace que no le permita registrarse con esos datos
-    if ($u[$k] == $_POST[$k]) {
+    if ($users[$k] == $_POST[$k]) {
         if ($k === 'mail') {
             $aux = 6;
             $auxMail = false;
@@ -34,6 +34,7 @@ if ($aux < 6 && $auxMail === true && $auxU === true) {  // si no hay datos repet
     ];
     $users[] = $nuevoDato;
     file_put_contents($usuarios, json_encode($users, JSON_PRETTY_PRINT));       //se guardan los datos del nuevo usuario en el archivo usuarios.json
+    header('Location:login.php');
 } else if ($aux >= 6) {
     die("El usuario ya está registrado, debe <a href='login.php'>logearse</a>");            // si todos los datos coinciden entonces le dice que se logee porque su cuenta ya está registrada
 } else if ($auxMail === false) {                          // con el mero hecho de que el mail o el nombre de usuario ya estén en uso debe volver a registrarse pero cambiando esos datos
