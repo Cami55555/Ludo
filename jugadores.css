@@ -1,0 +1,85 @@
+
+/* ----------------------
+   CUERPO GENERAL
+   ---------------------- */
+body {
+  background: #222;               /* Fondo oscuro */
+  color: #fff;                    /* Texto blanco */
+  font-family: sans-serif;        /* Tipografía limpia */
+  margin: 0;                      /* Sin margen por defecto */
+  display: flex;                  /* Usamos flexbox */
+  justify-content: center;        /* Centra horizontalmente */
+  align-items: center;            /* Centra verticalmente */
+  height: 100vh;                  /* Altura completa de pantalla */
+}
+
+/* ----------------------
+   CONTENEDOR DEL FORMULARIO
+   ---------------------- */
+.contenedor-formulario {
+  text-align: center;             /* Centra texto y botones */
+}
+
+/* ----------------------
+   TÍTULO PRINCIPAL
+   ---------------------- */
+.titulo {
+  font-size: 28px;                /* Tamaño grande */
+  font-weight: bold;              /* En negrita */
+  margin-bottom: 30px;            /* Espacio inferior */
+}
+
+/* ----------------------
+   OCULTAR BOTONES DE RADIO
+   ---------------------- */
+input[type="radio"] {
+  display: none;                  /* Oculta el radio estándar */
+}
+
+/* ----------------------
+   OPCIONES (BOTONES VISUALES)
+   ---------------------- */
+.boton-opcion {
+  display: block;                 /* Cada opción ocupa una línea */
+  background: #444;               /* Fondo gris oscuro */
+  color: #fff;                    /* Texto blanco */
+  padding: 20px;                  /* Espaciado interno */
+  margin-bottom: 20px;            /* Espacio entre opciones */
+  border-radius: 10px;            /* Bordes redondeados */
+  text-align: center;             /* Centra texto */
+  font-size: 20px;                /* Tamaño legible */
+  cursor: pointer;                /* Mano al pasar el mouse */
+  transition: 0.3s;               /* Animación suave */
+  user-select: none;              /* Evita seleccionar texto */
+}
+
+/* ----------------------
+   OPCIÓN SELECCIONADA
+   ---------------------- */
+.boton-opcion.seleccionado {
+  background: #00ff88;            /* Verde llamativo */
+  color: #000;                    /* Texto negro */
+  font-weight: bold;              /* Negrita */
+  transform: scale(1.05);         /* Efecto de agrandado */
+}
+
+/* ----------------------
+   BOTÓN "JUGAR"
+   ---------------------- */
+.boton-jugar {
+  background: #ffcc00;            /* Fondo amarillo */
+  color: #000;                    /* Texto negro */
+  border: none;                   /* Sin borde */
+  border-radius: 8px;             /* Bordes suaves */
+  padding: 15px 30px;             /* Tamaño cómodo */
+  font-size: 18px;                /* Texto grande */
+  cursor: pointer;                /* Mano al pasar el mouse */
+  transition: 0.3s;               /* Efecto suave */
+}
+
+/* ----------------------
+   EFECTO HOVER BOTÓN "JUGAR"
+   ---------------------- */
+.boton-jugar:hover {
+  background: #ffd633;            /* Amarillo más claro al pasar */
+}
