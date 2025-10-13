@@ -4,11 +4,19 @@ if (file_exists($usuarios)) {    //revisa que exista ese archivo
     $cont = file_get_contents($usuarios);      //guarda los datos del json
     $users = json_decode($cont, true);         //decodifica los datos del json
 }
+$nombre = $_POST['nombre'];
+$apellido = $_POST['apellido'];
+$usuario = $_POST['usuario'];
+$mail = $_POST['mail'];
+$clave = $_POST['clave'];
+$edad = $_POST['edad'];
+
 $aux = 0;     //para contar cuántos datos coinciden con los ya ingresados de modo en que si todos coinciden no se agrega un nuevo usuario
 $auxMail = false;
 $auxU = false;
 foreach ($users as $k => $u) {  // revisa todos los datos del json y los compara con los recién ingresados y si coinciden suma números a $aux y si coinciden ya sea mail o nombre de usuario entonces directamente hace que no le permita registrarse con esos datos
     if ($users[$k] == $_POST[$k]) {
+        echo 'Pan';
         if ($k === 'mail') {
             $aux = 6;
             $auxMail = false;
