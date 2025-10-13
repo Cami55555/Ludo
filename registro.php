@@ -17,18 +17,10 @@ $auxU = false;
 foreach ($users as $k => $u) {  // revisa todos los datos del json y los compara con los recién ingresados y si coinciden suma números a $aux y si coinciden ya sea mail o nombre de usuario entonces directamente hace que no le permita registrarse con esos datos
     foreach ($users[$k] as $dato => $d) {
         if ($users[$k][$dato] == $_POST[$dato]) {
-<<<<<<< HEAD
-            echo 'Pan';
-            if ($k === 'mail') {
-                $aux = 6;
-                $auxMail = false;
-            } else if ($k === 'usuario') {
-=======
             if ($dato === 'mail') {
                 $aux = 6;
                 $auxMail = false;
             } else if ($dato === 'usuario') {
->>>>>>> 80e09f90c8b7eb96c06ddefc0febdad551fe490d
                 $aux = 6;
                 $auxU = false;
             } else {
