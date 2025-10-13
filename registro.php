@@ -15,18 +15,20 @@ $aux = 0;     //para contar cuántos datos coinciden con los ya ingresados de mo
 $auxMail = false;
 $auxU = false;
 foreach ($users as $k => $u) {  // revisa todos los datos del json y los compara con los recién ingresados y si coinciden suma números a $aux y si coinciden ya sea mail o nombre de usuario entonces directamente hace que no le permita registrarse con esos datos
-    if ($users[$k] == $_POST[$k]) {
-        echo 'Pan';
-        if ($k === 'mail') {
-            $aux = 6;
-            $auxMail = false;
-        } else if ($k === 'usuario') {
-            $aux = 6;
-            $auxU = false;
-        } else {
-            $aux++;
-            $auxMail = true;
-            $auxU = true;
+    foreach ($users[$k] as $dato => $d) {
+        if ($users[$k][$dato] == $_POST[$dato]) {
+            echo 'Pan';
+            if ($k === 'mail') {
+                $aux = 6;
+                $auxMail = false;
+            } else if ($k === 'usuario') {
+                $aux = 6;
+                $auxU = false;
+            } else {
+                $aux++;
+                $auxMail = true;
+                $auxU = true;
+            }
         }
     }
 }
