@@ -11,15 +11,17 @@ $mail = $_POST['mail'];
 $clave = $_POST['clave'];
 $rep_clave = $_POST['clave2'];
 // se comparan los datos ingresados con los del json y de coincidir los guarda en variables de sesión lleva al usuario de nuevo al index
-foreach ($users as $u)
-{
-    if ($users['usuario'] === $usuario && $users['mail'] === $mail && $users['clave'] === $clave && $clave === $rep_clave){
+foreach ($users as $k => $u) {
+    if ($users[$k]['usuario'] === $usuario && $users[$k]['mail'] === $mail && $users[$k]['clave'] === $clave && $clave === $rep_clave) {
         $_SESSION['usuario'] = $usuario;
         $_SESSION['mail'] = $mail;
-        $_SESSION['wins'] = $users['wins'];
+        $_SESSION['wins'] = $users[$k]['wins'];
         header('Location:index.php');
     } else {
         die("El usuario no se encontró. Verifique que los datos ingresados sean correctos en el <a href='login.html'>login</a> o si no está registrado <a href='registrarse.php'>registrese</a>");
     }
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> 80e09f90c8b7eb96c06ddefc0febdad551fe490d

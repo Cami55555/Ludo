@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+require 'verificarSesion.php'; //verifica que la sesión esté iniciada
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +10,8 @@
   <link rel="stylesheet" href="jugadores.css" /> <!-- Enlace al estilo -->
   <title>Elegir Jugadores</title>
 </head>
+<header>
+</header>
 <body>
   <!-- CONTENEDOR PRINCIPAL DEL FORMULARIO -->
   <div class="contenedor-formulario">
