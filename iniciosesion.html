@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="iniciarsesion.css" />
+    <title>Registrarse</title>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo">
+        <a href="/index.php"
+          ><img src="/imagenes/logo.png" alt="Home" />
+        </a>
+        <div class="texto-logo">
+          <h1>Inicia Sesion</h1>
+        </div>
+      </div>
+
+      <nav class="nav-bar">
+    <a href="#">Inicio</a>
+    <a href="#">Iniciar sesion</a>
+    <a href="#">Reglas</a>
+
+  </nav>
+    </header>
+    <div class="form-container">
+      <p class="title">Inicia sesion</p>
+      <form class="form" action="login.php" method="post">
+        <div class="input-group">
+          <label for="user">Usuario:</label>
+          <input type="text" name="usuario" id="usuario" required />
+        </div>
+        <div class="input-group">
+          <label for="correo">Correo electronico:</label>
+          <input type="email" name="mail" id="mail" required />
+        </div>
+        <div class="input-group">
+          <label for="correo">Contraseña:</label>
+          <input type="password" name="clave" id="clave" required />
+          <div class="input-group">
+          <label for="correo">Confirmar Contraseña:</label>
+          <input type="password" name="clave2" id="clave2" required />
+        </div>
+        </div>
+    
+       
+        <button type="submit" class="sign">Registrarse</button>
+      </form>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Redes Sociales</h3>
+          <div class="redes-sociales">
+            <p>📸 Instagram: @LaGulaRestaurant</p>
+            <p>📘 Facebook: Restaurante La Gula</p>
+            <p>🐦 Twitter: @LaGulaRestaurant</p>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p>Correo: lagula@restaurante.com</p>
+          <p>Teléfono: +34 123 456 789</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Ubicación</h3>
+          <p>La Falda, Cordoba</p>
+          <p>Calle Sabores 123</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 La Gula. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="registrarse.css" />
+    <title>Registrarse</title>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo">
+        <a href="/index.php"
+          ><img src="/imagenes/logo.png" alt="Home" />
+        </a>
+        <div class="texto-logo">
+          <h1>Registro</h1>
+        </div>
+      </div>
+
+      <nav class="nav-bar">
+    <a href="#">Inicio</a>
+    <a href="#">Iniciar sesion</a>
+    <a href="#">Reglas</a>
+
+  </nav>
+    </header>
+    <div class="form-container">
+      <p class="title">Registrarse</p>
+      <form class="form" action="registro.php" method="post">
+        <div class="input-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" id="nombre" required />
+        </div>
+        <div class="input-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" name="apellido" id="apellido" required />
+        </div>
+    
+        <div class="input-group">
+          <label for="usuario">Usuario:</label>
+          <input type="text" name="usuario" id="usuario" required />
+        </div>
+
+        <div class="input-group">
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" name="mail" id="mail" required />
+        </div>
+        <div class="input-group">
+          <label for="contraseña">Contraseña:</label>
+          <input type="password" name="clave" id="clave" required />
+        </div>
+        <br />
+
+        <div class="input-group">
+          <label for="cumpleaños">Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            name="edad"
+            id="edad"
+            required
+          />
+        </div>
+        <button type="submit" class="sign">Registrarse</button>
+      </form>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Redes Sociales</h3>
+          <div class="redes-sociales">
+            <p>📸 Instagram: @LaGulaRestaurant</p>
+            <p>📘 Facebook: Restaurante La Gula</p>
+            <p>🐦 Twitter: @LaGulaRestaurant</p>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <p>Correo: lagula@restaurante.com</p>
+          <p>Teléfono: +34 123 456 789</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Ubicación</h3>
+          <p>La Falda, Cordoba</p>
+          <p>Calle Sabores 123</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 La Gula. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>
