@@ -12,10 +12,10 @@
   <header>
     <nav class="menu-principal">
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Reglas</a></li>
-        <li><a href="#">Perfil</a></li>
-        <li><a href="#">Salir</a></li>
+        <li><a href="index.php">Inicio</a></li>
+        <li><a href="reglas.php">Reglas</a></li>
+        <li><a href="perfil.php">Perfil</a></li>
+        <li><a href="index.php">Salir</a></li>
       </ul>
     </nav>
   </header>
@@ -53,6 +53,8 @@
 
       let salio6=false;
       let win=false;
+      let gfichas = [4,4,4,4]; //cantidad de fichas guardadas*jugador
+      let tfichas = [0,0,0,0];//cantidad de fichas en el tablero*jugador
       let numeroDado = 0;  
       let turnoActual = 0;
 
@@ -88,7 +90,6 @@
             amarillo: [{x:0.73,y:0.22},{x:0.83,y:0.22},{x:0.73,y:0.31},{x:0.83,y:0.31}]
         };
           const colores = ['red','blue','green','yellow'];
-          // Array que indica el orden de los colores según los jugadores.
            const nombresColores = ['rojo','azul','verde','amarillo'];
 
     // Dibujar fichas según la cantidad de jugadores seleccionados
@@ -151,7 +152,7 @@
                  console.log("Número del dado:", numeroDado); // Mostrar en consola (para debug)
     
                movimientopieza(numeroDado);
-                pasarTurno()
+                pasarTurno();
               dado.addEventListener('click', tirarDado);
              }
            }, 100); // Intervalo de 100ms entre cada cambio de imagen (0.1 segundos)
@@ -163,6 +164,7 @@
                if(numeroDado>=6){
                 salio6=true;
                   document.getElementById('opciones-jugador').style.display = 'block';
+                  
                   console.log("Salió 6, mostrar opciones al jugador");
                }
                if (salio6==true){
@@ -175,6 +177,18 @@
 
                 // Evento click sobre el dado
      }  
+     sacarFicha()
+     {
+         if(gfichas[turnoActual]>=1)
+         {
+           gfichas[turnoActual]--;
+           tfichas[turnoActual]++;
+         } 
+         else
+         {
+           
+         }
+     }
        
     function mostrarTurno() {
     const jugador = nombresColores[turnoActual];

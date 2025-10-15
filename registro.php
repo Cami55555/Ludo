@@ -49,7 +49,7 @@ if ($aux < 6 && $auxMail === true && $auxU === true) {  // si no hay datos repet
 } else if ($aux >= 6) {
     die("El usuario ya está registrado, debe <a href='login.php'>logearse</a>");            // si todos los datos coinciden entonces le dice que se logee porque su cuenta ya está registrada
 } else if ($auxMail === false) {                          // con el mero hecho de que el mail o el nombre de usuario ya estén en uso debe volver a registrarse pero cambiando esos datos
-    die("El mail ya está en uso. <a href='registrarse.php'>Registro</a>");
+    die("El mail ya está en uso. <a href='registrarse.html'>Registro</a>");
 } else if ($auxU === false) {
     die("El nombre de usuario ya está en uso. <a href='registrarse.php'>Registro</a>");
 }
