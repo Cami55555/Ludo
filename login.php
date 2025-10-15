@@ -13,8 +13,12 @@ $rep_clave = $_POST['clave2'];
 // se comparan los datos ingresados con los del json y de coincidir los guarda en variables de sesión lleva al usuario de nuevo al index
 foreach ($users as $k => $u) {
     if ($users[$k]['usuario'] === $usuario && $users[$k]['mail'] === $mail && $users[$k]['clave'] === $clave && $clave === $rep_clave) {
+        $_SESSION['nombre'] = $users[$k]['nombre'];
+        $_SESSION['apellido'] = $users[$k]['apellido'];
         $_SESSION['usuario'] = $usuario;
         $_SESSION['mail'] = $mail;
+        $_SESSION['clave'] = $users[$k]['clave'];
+        $_SESSION['edad'] = $users[$k]['edad'];
         $_SESSION['wins'] = $users[$k]['wins'];
         header('Location:index.php');
     } else {
