@@ -21,7 +21,3 @@ foreach ($users as $k => $u) {
         die("El usuario no se encontró. Verifique que los datos ingresados sean correctos en el <a href='login.html'>login</a> o si no está registrado <a href='registrarse.php'>registrese</a>");
     }
 }
-<<<<<<< HEAD
-?>
-=======
->>>>>>> 80e09f90c8b7eb96c06ddefc0febdad551fe490d

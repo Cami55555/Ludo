@@ -1,5 +1,6 @@
 <?php
 //verifica que la sesión esté iniciada
 if (!isset($_SESSION['dni']) || !isset($_SESSION['clave'])) {
-    die("Primero inicie sesión. <a href='login.php'>Login</a>");
+    echo("Primero inicie sesión. <a href='iniciosesion.html'>Login</a> <br>");
+    die("¿No tiene cuenta? <a href='registrarse.html'>Registrarse</a>");
 }

@@ -1,38 +1,47 @@
 [
-    {
-        "nombre": "pan",
-        "apellido": "cho",
-        "usuario": "papitas",
-        "mail": "mail@pan.com",
-        "clave": "clave",
-        "edad": 170,
-        "wins": 0
-    },
-    {
-        "nombre": "cami",
-        "apellido": "messi",
-        "usuario": "pedro",
-        "mail": "messi@gmail.com",
-        "clave": "2233",
-        "edad": "2025-10-14",
-        "wins": 0
-    },
-    {
-        "nombre": " estn",
-        "apellido": " gbxrfxd",
-        "usuario": "dxfghtd",
-        "mail": "xdfgxdersg@fsygubzyufde",
-        "clave": "stgrsdtdz78452",
-        "edad": "2026-01-22",
-        "wins": 0
-    },
-    {
-        "nombre": "para",
-        "apellido": "para",
-        "usuario": "monja",
-        "mail": "manija@latas",
-        "clave": "dsc5v4fs6rf4",
-        "edad": "2026-03-25",
-        "wins": 0
-    }
+  {
+    "nombre": "pan",
+    "apellido": "cho",
+    "usuario": "papitas",
+    "mail": "mail@pan.com",
+    "clave": "clave",
+    "edad": 170,
+    "wins": 0
+  },
+  {
+    "nombre": "cami",
+    "apellido": "messi",
+    "usuario": "pedro",
+    "mail": "messi@gmail.com",
+    "clave": "2233",
+    "edad": "2025-10-14",
+    "wins": 0
+  },
+  {
+    "nombre": " estn",
+    "apellido": " gbxrfxd",
+    "usuario": "dxfghtd",
+    "mail": "xdfgxdersg@fsygubzyufde",
+    "clave": "stgrsdtdz78452",
+    "edad": "2026-01-22",
+    "wins": 0
+  },
+  {
+    "nombre": "para",
+    "apellido": "para",
+    "usuario": "monja",
+    "mail": "manija@latas",
+    "clave": "dsc5v4fs6rf4",
+    "edad": "2026-03-25",
+    "wins": 0
+  },
+  {
+    "nombre": "lupe",
+    "apellido": "minich",
+    "usuario": "lupe_123",
+    "mail": "est.minich.guaadalupe@latecnicalf.com.ar",
+    "clave": "lupexd",
+    "edad": "2009-05-25",
+    "wins": 0
+  }
 ]

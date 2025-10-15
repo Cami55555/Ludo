@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Adaptable -->
   <link rel="stylesheet" href="tablero.css" /> <!-- Enlace al CSS -->
   <title>Tablero de Ludo</title>
+  
 </head>
 <body>
   <!-- ENCABEZADO Y MENÚ -->
@@ -18,6 +19,8 @@
       </ul>
     </nav>
   </header>
+  <button onclick="pasarTurno()">Pasar Turno</button>
+<div id="turno" style="font-size: 20px; font-weight: bold; margin: 10px;"></div>
 
   <!-- CONTENEDOR DEL TABLERO Y DADO -->
   <div class="contenedor-tablero">
@@ -32,27 +35,26 @@
       <p class="titulo-dado">Tirar Dado</p>
       <img id="dado" src="imagenes/dado1.png" alt="Dado" /> <!-- Tamaño fijo -->
     </div>
+    <div id="opciones-jugador" style="display: none; margin-top: 20px;">
+  <p>Elegí una opción:</p>
+  <button onclick="sacarFicha()">Sacar ficha</button>
+  <button onclick="moverFichaExistente()">Mover ficha existente</button>
+</div>
   </div>
 
   <script>
-    // -----------------------
-    // CANVAS DEL TABLERO
-    // -----------------------
 
-
-           // Busca el elemento HTML que tiene el id "canvas-ludo con la funcion getElementById"
-           // Este canvas es donde se dibujan las fichas del juego
-           // "canvas" ahora es una referencia a ese elemento, podemos usarlo en JS
-         const canvas = document.getElementById('canvas-ludo');  
-
-         // Obtenemos el "contexto 2D" del canvas
-        // El contexto 2D es como un "lápiz virtual",y gracias a la funcion "getContext" nos da las herramientas para poder dibujar 
-       // "ctx" será nuestra herramienta principal para dibujar las fichas y cualquier otra cosa en el tablero
+         const canvas = document.getElementById('canvas-ludo'); 
         const ctx = canvas.getContext('2d');                    
-
-      // Busca la imagen del tablero en la página usando su clase "imagen-tablero" con la funcion "querySelector"
-      // Esto nos permite acceder a sus propiedades, como ancho y alto, para ajustar el canvas correctamente
         const tablero = document.querySelector('.imagen-tablero'); 
+        const dado = document.getElementById('dado');
+       const turnoTexto = document.getElementById('turno');
+      const sacarficha = document.getElementById('sacarficha');
+
+      let salio6=false;
+      let win=false;
+      let numeroDado = 0;  
+      let turnoActual = 0;
 
         // Ajusta el canvas para que tenga el mismo ancho y alto que la imagen del tablero
         function ajustarCanvas() 
@@ -61,61 +63,40 @@
           canvas.height = tablero.clientHeight; // alto igual al de la imagen
         }
 
-      // Llama a la función para ajustar el canvas al cargar la página
-      ajustarCanvas();
+     tablero.onload = () => { //espera q   eu e tableto carge antes de llamar a las funciones
+     ajustarCanvas();
+     dibujarFichas();
+       };
 
      // Escucha cuando se cambia el tamaño de la ventana y vuelve a ajustar el canvas
        window.addEventListener('resize', ajustarCanvas);
-
-
-    // -----------------------
-    // CANTIDAD DE JUGADORES
-    // -----------------------
-
-        // Función para obtener un valor de parámetro de la URL
+  
         function obtenerParametro(nombre) 
         {
-          // URLSearchParams toma la parte de la URL después del "?" 
-          // y permite acceder a cada parámetro como un par clave-valor
           const parametros = new URLSearchParams(window.location.search);
-
-          // Devuelve el valor del parámetro que coincida con el nombre dado
-         // Por ejemplo: si la URL es "tablero.php?jugadores=3"
-         // y llamamos obtenerParametro('jugadores'), nos devuelve "3"
             return parametros.get(nombre);
         }
-
-
-        // Obtenemos la cantidad de jugadores desde la URL
-        // 1. obtenerParametro('jugadores') -> busca el valor del parámetro "jugadores" en la URL
-        // 2. parseInt(...) -> convierte el valor (que es un string) a número entero
-        // 3. || 4 -> si no se encuentra ningún valor, se asigna 4 como valor por defecto
-         let cantidadJugadores = parseInt(obtenerParametro('jugadores')) || 4; // cantidad de jugadores a usar en el juego
-
+         let cantidadJugadores = parseInt(obtenerParametro('jugadores')) || 4; 
           // Array donde guardamos el color de cada jugador
-          const colores = ['red','blue','green','yellow'];
-
           // Posiciones iniciales de las fichas
          const posiciones = 
          {
-              // Mientras más aumentes la X, la ficha se mueve a la derecha
               // Mientras más aumentes la Y, la ficha se mueve hacia abajo
             verde: [{x:0.20,y:0.22},{x:0.30,y:0.22},{x:0.20,y:0.31},{x:0.30,y:0.31}],
-            azul: [{x:0.73,y:0.80},{x:0.83,y:0.80},{x:0.73,y:0.71},{x:0.83,y:0.71}],
-            rojo: [{x:0.20,y:0.80},{x:0.30,y:0.80},{x:0.20,y:0.71},{x:0.30,y:0.71}],
+            azul: [{x:0.73,y:0.71},{x:0.83,y:0.71},{x:0.73,y:0.80},{x:0.83,y:0.80}],
+            rojo: [{x:0.20,y:0.71},{x:0.30,y:0.71},{x:0.20,y:0.80},{x:0.30,y:0.80}],
             amarillo: [{x:0.73,y:0.22},{x:0.83,y:0.22},{x:0.73,y:0.31},{x:0.83,y:0.31}]
         };
+          const colores = ['red','blue','green','yellow'];
+          // Array que indica el orden de los colores según los jugadores.
+           const nombresColores = ['rojo','azul','verde','amarillo'];
 
     // Dibujar fichas según la cantidad de jugadores seleccionados
      function dibujarFichas() 
      {
-          // Limpia todo el canvas antes de dibujar las fichas nuevamente.
-          // Esto evita que se queden dibujos viejos o se superpongan.
+          
            ctx.clearRect(0,0,canvas.width,canvas.height); 
-
-          // Array que indica el orden de los colores según los jugadores.
-           const nombresColores = ['rojo','azul','verde','amarillo']; 
-
+            
           // Recorre cada jugador según la cantidad seleccionada
           for(let i=0;i<cantidadJugadores;i++)
           {
@@ -126,12 +107,6 @@
                   posiciones[colorNombre].forEach(pos=>
                   {
                     ctx.beginPath(); // Inicio un nuevo dibujo (Esto es para dibujar las fichas)
-
-                    // Dibuja un círculo:
-                    // pos.x * canvas.width → posición horizontal relativa al tamaño del canvas
-                    // pos.y * canvas.height → posición vertical relativa al tamaño del canvas
-                    // 17 → radio del círculo
-                    // 0 a Math.PI*2 → ángulo completo para un círculo entero
                     ctx.arc(pos.x*canvas.width,pos.y*canvas.height,17,0,Math.PI*2); 
 
                     ctx.fillStyle = colorHex; // Define el color de relleno del círculo
@@ -142,13 +117,7 @@
            }
       }
 
-       dibujarFichas(); // Llamar al iniciar
-
-    // -----------------------
-    // DADO
-    // -----------------------
-    const dado = document.getElementById('dado');       // Imagen del dado
-    let numeroDado = 0;                                // Guardar número del dado
+                              
     const carasDado = [
       'imagenes/dado1.png',
       'imagenes/dado2.png',
@@ -161,10 +130,8 @@
    // Función del dado
      function tirarDado() 
      {
-  
+         dado.removeEventListener('click', tirarDado);
          let contador = 0; // Contador para controlar cuántas veces cambia la cara del dado
-
-        // setInterval crea una animación que se repite cada cierto tiempo (100ms)
            const animacion = setInterval(() => 
            {
 
@@ -182,17 +149,49 @@
                  clearInterval(animacion); // Detener la animación de cambiar imágenes
                  numeroDado = randomIndex + 1; // Guardar el número real del dado (1 a 6)
                  console.log("Número del dado:", numeroDado); // Mostrar en consola (para debug)
-      
-                // Creo que a partir de aca podemos llamar a la funcion de los movimietnos de las piezas
-                // y a la funcion de los turnos
+    
+               movimientopieza(numeroDado);
+                pasarTurno()
+              dado.addEventListener('click', tirarDado);
              }
-
            }, 100); // Intervalo de 100ms entre cada cambio de imagen (0.1 segundos)
+          
       }
 
+      function movimientopieza(numeroDado)
+      {
+               if(numeroDado>=6){
+                salio6=true;
+                  document.getElementById('opciones-jugador').style.display = 'block';
+                  console.log("Salió 6, mostrar opciones al jugador");
+               }
+               if (salio6==true){
 
-    // Evento click sobre el dado
-    dado.addEventListener('click',tirarDado);
+                
+               }
+               else {
+                  pasarTurno() 
+               }
+
+                // Evento click sobre el dado
+     }  
+       
+    function mostrarTurno() {
+    const jugador = nombresColores[turnoActual];
+    turnoTexto.innerText = "Le toca a: " + jugador;
+    console.log("🎲 Turno del jugador: " + jugador);
+  }
+   function pasarTurno() {
+    turnoActual = (turnoActual + 1) % cantidadJugadores;
+    mostrarTurno();
+  }
+     mostrarTurno();
+
+   dado.addEventListener('click',tirarDado);
+
+  
+
+
   </script>
 </body>
 </html>
