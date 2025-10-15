@@ -22,6 +22,6 @@ foreach ($users as $k => $u) {
         $_SESSION['wins'] = $users[$k]['wins'];
         header('Location:index.php');
     } else {
-        die("El usuario no se encontró. Verifique que los datos ingresados sean correctos en el <a href='login.html'>login</a> o si no está registrado <a href='registrarse.php'>registrese</a>");
+        die("El usuario no se encontró. Verifique que los datos ingresados sean correctos en el <a href='iniciarsesion.html'>login</a> o si no está registrado <a href='registrarse.html'>registrese</a>");
     }
 }
