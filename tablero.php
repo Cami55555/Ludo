@@ -43,7 +43,9 @@
 </div>
   </div>
 
-  <script>
+  <script> 
+      const colores = ['red','blue','green','yellow'];
+      const nombresColores = ['rojo','azul','verde','amarillo'];
 
       const canvas = document.getElementById('canvas-ludo'); 
       const ctx = canvas.getContext('2d');                    
@@ -59,6 +61,13 @@
       let tfichas = [0,0,0,0];//cantidad de fichas en el tablero*jugador
       let numeroDado = 0;  
       let turnoActual = 0;
+
+      let posicionesFichasJugadores = [
+      [-1, -1, -1, -1], // rojo
+      [-1, -1, -1, -1], // azul
+      [-1, -1, -1, -1], // verde
+      [-1, -1, -1, -1], // amarillo
+      ];
 
         // Ajusta el canvas para que tenga el mismo ancho y alto que la imagen del tablero
         function ajustarCanvas() 
@@ -91,8 +100,7 @@
             rojo: [{x:0.20,y:0.71},{x:0.30,y:0.71},{x:0.20,y:0.80},{x:0.30,y:0.80}],
             amarillo: [{x:0.73,y:0.22},{x:0.83,y:0.22},{x:0.73,y:0.31},{x:0.83,y:0.31}]
         };
-          const colores = ['red','blue','green','yellow'];
-           const nombresColores = ['rojo','azul','verde','amarillo'];
+         
 
     // Dibujar fichas según la cantidad de jugadores seleccionados
      function dibujarFichas() 
@@ -178,7 +186,7 @@
     pasarTurno();
     dadoTirado = false;
     }
-   }
+   }//lol
      function sacarFicha()
      {
          if(gfichas[turnoActual]>=1)
