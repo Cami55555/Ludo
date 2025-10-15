@@ -35,6 +35,7 @@
       <p class="titulo-dado">Tirar Dado</p>
       <img id="dado" src="imagenes/dado1.png" alt="Dado" /> <!-- Tamaño fijo -->
     </div>
+      <!-- opciones cuando saca 6 -->
     <div id="opciones-jugador" style="display: none; margin-top: 20px;">
   <p>Elegí una opción:</p>
   <button onclick="sacarFicha()">Sacar ficha</button>
@@ -44,14 +45,15 @@
 
   <script>
 
-         const canvas = document.getElementById('canvas-ludo'); 
-        const ctx = canvas.getContext('2d');                    
-        const tablero = document.querySelector('.imagen-tablero'); 
-        const dado = document.getElementById('dado');
-       const turnoTexto = document.getElementById('turno');
+      const canvas = document.getElementById('canvas-ludo'); 
+      const ctx = canvas.getContext('2d');                    
+      const tablero = document.querySelector('.imagen-tablero'); 
+      const dado = document.getElementById('dado');
+      const turnoTexto = document.getElementById('turno');
       const sacarficha = document.getElementById('sacarficha');
 
       let salio6=false;
+      let dadoTirado = false;
       let win=false;
       let gfichas = [4,4,4,4]; //cantidad de fichas guardadas*jugador
       let tfichas = [0,0,0,0];//cantidad de fichas en el tablero*jugador
@@ -131,6 +133,8 @@
    // Función del dado
      function tirarDado() 
      {
+         if (dadoTirado) return;//evita que repita turno
+         dadoTirado = true;
          dado.removeEventListener('click', tirarDado);
          let contador = 0; // Contador para controlar cuántas veces cambia la cara del dado
            const animacion = setInterval(() => 
@@ -152,42 +156,46 @@
                  console.log("Número del dado:", numeroDado); // Mostrar en consola (para debug)
     
                movimientopieza(numeroDado);
-                pasarTurno();
               dado.addEventListener('click', tirarDado);
+               if (!salio6) {//evita que repita turno
+               pasarTurno();
+               dadoTirado = false;
+              }
              }
            }, 100); // Intervalo de 100ms entre cada cambio de imagen (0.1 segundos)
           
       }
 
-      function movimientopieza(numeroDado)
-      {
-               if(numeroDado>=6){
-                salio6=true;
-                  document.getElementById('opciones-jugador').style.display = 'block';
-                  
-                  console.log("Salió 6, mostrar opciones al jugador");
-               }
-               if (salio6==true){
-
-                
-               }
-               else {
-                  pasarTurno() 
-               }
-
-                // Evento click sobre el dado
-     }  
-     sacarFicha()
+    function movimientopieza(numeroDado) {
+     if (numeroDado === 6) {
+    salio6 = true;
+    turnoTexto.innerText = "Felicidades, ahora repites el turno";
+    document.getElementById('opciones-jugador').style.display = 'block';
+    console.log("Salió 6, mostrar opciones al jugador");
+    dadoTirado = false;
+    } else {
+    salio6 = false;
+    pasarTurno();
+    dadoTirado = false;
+    }
+   }
+     function sacarFicha()
      {
          if(gfichas[turnoActual]>=1)
          {
            gfichas[turnoActual]--;
            tfichas[turnoActual]++;
+
+           
          } 
          else
          {
+          nosepuede();
            
          }
+     }
+     function moverfichaexistente(){
+
      }
        
     function mostrarTurno() {
@@ -195,6 +203,10 @@
     turnoTexto.innerText = "Le toca a: " + jugador;
     console.log("🎲 Turno del jugador: " + jugador);
   }
+  function nosepuede()
+  {
+    turnoTexto.innerText = "no se puede realizar esa accion " ;
+  } 
    function pasarTurno() {
     turnoActual = (turnoActual + 1) % cantidadJugadores;
     mostrarTurno();
