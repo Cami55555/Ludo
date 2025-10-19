@@ -40,8 +40,17 @@
         "apellido": "b",
         "usuario": "c",
         "mail": "defghijk@lmn",
-        "clave": "ñopqrstuvwxyz",
+        "clave": "\u00f1opqrstuvwxyz",
         "edad": "50416",
+        "wins": 0
+    },
+    {
+        "nombre": "Uma",
+        "apellido": "uma",
+        "usuario": "uma",
+        "mail": "uma@gmial.com",
+        "clave": "uma01",
+        "edad": "18",
         "wins": 0
     }
 ]
