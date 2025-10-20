@@ -113,18 +113,15 @@
         ctx.stroke();
 
         // 🔥 Resaltar si está seleccionada
-       if (
-            fichaSeleccionada &&
-           fichaSeleccionada.jugador === i &&
-           fichaSeleccionada.indice === j
-         ) {
-        // Dibuja un círculo exterior más grande para resaltar
-          ctx.lineWidth = 5;
-           ctx.strokeStyle = 'yellow'; // color que resalte
-           ctx.beginPath();
-           ctx.arc(cx, cy, radioFicha + 5, 0, Math.PI * 2);
-           ctx.stroke();
-}
+        if (
+          fichaSeleccionada &&
+          fichaSeleccionada.jugador === i &&
+          fichaSeleccionada.indice === j
+        ) {
+          ctx.lineWidth = 4;
+          ctx.strokeStyle = 'white';
+          ctx.stroke();
+        }
       });
     }
   }
@@ -163,12 +160,16 @@
 
   // --- MOVER LA FICHA SELECCIONADA (EJEMPLO BÁSICO) ---
   function moverFichaSeleccionada() {
+    if (!fichaSeleccionada) {
+      turnoTexto.innerText = "Primero selecciona una ficha.";
+      return;
+    }
+
     const jugador = nombresColores[fichaSeleccionada.jugador];
     const idx = fichaSeleccionada.indice;
-    for(let i=0;i>numeroDado;i++)
-    {
-        
-    }//y==0,55 x==0,060 (diferencia entre)
+
+    // 🔹 Movimiento de ejemplo: avanzar en X según el dado
+    posiciones[jugador][idx].x += numeroDado * 0.02;
 
     dibujarFichas();
     fichaSeleccionada = null; // deseleccionamos
@@ -206,7 +207,7 @@
     }, 100);
   }
 let accion=false;
-  function movimientopieza() {
+  function movimientopieza(numeroDado) {
     if (numeroDado === 6) {
       salio6 = true;
       turnoTexto.innerText = "🎉 Sacaste 6 " + nombresColores[turnoActual] + ", puedes mover o sacar ficha";
