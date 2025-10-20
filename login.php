@@ -6,14 +6,13 @@ if (file_exists($usuarios)) {    //revisa que exista ese archivo
     $users = json_decode($cont, true);         //decodifica los datos del json
 }
 // se guardan los datos ingresados en variables
-$usuario = $_POST['usuario'];
 $mail = $_POST['mail'];
 $clave = $_POST['clave'];
 $rep_clave = $_POST['clave2'];
 $aux = 0;
 // se comparan los datos ingresados con los del json y de coincidir los guarda en variables de sesión lleva al usuario de nuevo al index
 foreach ($users as $k => $u) {
-    if ($users[$k]['usuario'] === $usuario && $users[$k]['mail'] === $mail && $users[$k]['clave'] === $clave && $clave === $rep_clave) {
+    if ($users[$k]['mail'] === $mail && $users[$k]['clave'] === $clave && $clave === $rep_clave) {
         $_SESSION['nombre'] = $users[$k]['nombre'];
         $_SESSION['apellido'] = $users[$k]['apellido'];
         $_SESSION['usuario'] = $usuario;
