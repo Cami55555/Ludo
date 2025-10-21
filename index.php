@@ -21,6 +21,7 @@
         <li><a href="jugadores.php">Jugar</a></li>
         <li><a href="reglas.php">Reglas</a></li>
         <li><a href="historia.php">Historia</a></li>
+        <li><a href="perfil.php">Perfil</a></li>
       </ul>
     </nav>
   </header>

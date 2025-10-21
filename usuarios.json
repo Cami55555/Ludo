@@ -52,5 +52,14 @@
         "clave": "uma01",
         "edad": "18",
         "wins": 0
+    },
+    {
+        "nombre": "Valentin",
+        "apellido": "dios",
+        "usuario": "valensito",
+        "mail": "valennn@gmail.com",
+        "clave": "12345",
+        "edad": "18",
+        "wins": 0
     }
 ]
