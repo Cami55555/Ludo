@@ -62,26 +62,100 @@
   let tfichas = [-1, -1, -1, -1];
   let win = false;
 
-  // --- NUEVAS VARIABLES ---
+const entradaJugadores = {
+  rojo: 0,
+  verde: 13,
+  amarillo: 26,
+  azul: 39
+};
+
   let fichaSeleccionada = null;
   const radioFicha = 17;
-     let posiciones = 
+  let posiciones = 
          {
               // Mientras más aumentes la Y, la ficha se mueve hacia abajo
             verde: [{x:0.20,y:0.22},{x:0.30,y:0.22},{x:0.20,y:0.31},{x:0.30,y:0.31}],
             azul: [{x:0.73,y:0.71},{x:0.83,y:0.71},{x:0.73,y:0.80},{x:0.83,y:0.80}],
             rojo: [{x:0.20,y:0.71},{x:0.30,y:0.71},{x:0.20,y:0.80},{x:0.30,y:0.80}],
-            amarillo: [{x:0.73,y:0.22},{x:0.83,y:0.22},{x:0.73,y:0.31},{x:0.83,y:0.31}]
+            amarillo: [{x:0.73 , y: 0.22},{x:0.83,y:0.22},{x:0.73,y:0.31},{x:0.83,y:0.31}]
         };
-         const seguimiento = 
-         {
-              // Mientras más aumentes la Y, la ficha se mueve hacia abajo
-            verde: {x:0.163,y:0.455},
-            azul: {x:0.865,y:0.564},
-            rojo: {x:0.4545,y:0.836},
-            amarillo: {x:0.574,y:0.182}
-        }; //y==0,55 x==0,060
+         //
+ const recorrido = [
+  { x: 0.4545, y: 0.836 }, // Casilla 0
+  { x: 0.4545, y: 0.78 },  // Casilla 1
+  { x: 0.4545, y: 0.724 }, // Casilla 2
+  { x: 0.4545, y: 0.668 }, // Casilla 3
+  { x:  0.4545, y: 0.616  }, // Casilla 4
+  // izquierda
+  { x: 0.398, y: 0.564  },  // Casilla 5
+  { x: 0.337, y: 0.564  },  // Casilla 6
+  { x: 0.2795, y: 0.564 },  // Casilla 7+
+  { x: 0.2218, y: 0.564},  // Casilla 8+
+  { x: 0.163, y: 0.564 },  // Casilla 9
+    // subiendo
+  { x: 0.103, y: 0.564 },  // Casilla 10
+  {  x: 0.103, y: 0.509},    // Casilla 11
+  { x: 0.103, y: 0.452},    // Casilla 12
+  //derecha
+  { x:0.163,y:0.452 },    // Casilla 13 (inicio VERDE)+++
+  { x: 0.220, y: 0.452 },    // Casilla 14
+  { x: 0.28, y: 0.452 },    // Casilla 15++++++
+  { x: 0.338, y: 0.452 },    // Casilla 16
+  { x: 0.398, y: 0.452 },    // Casilla 17+++
 
+  { x: 0.4545, y: 0.398 }, // Casilla 18
+  { x: 0.4545, y: 0.346 }, // Casilla 19
+  { x: 0.4545, y: 0.289}, // Casilla 20++++
+  {x: 0.4545, y: 0.235}, // Casilla 21
+  { x: 0.4545, y: 0.18 },  // Casilla 22
+
+  {  x: 0.4545, y: 0.128  },  // Casilla 23
+  { x: 0.514, y: 0.128 },   // Casilla 24
+  { x: 0.575, y: 0.128},   // Casilla 25
+
+  {   x: 0.575, y: 0.182  },  // Casilla 26 (inicio AMARILLO)
+  { x: 0.575, y: 0.235 },  // Casilla 27
+  { x: 0.575, y: 0.289 },  // Casilla 28
+  { x: 0.575, y: 0.346 },  // Casilla 29
+  { x: 0.575, y: 0.398 },    // Casilla 30++++++++++
+
+  {x: 0.632, y: 0.452 },    // Casilla 31+++++++
+  {x: 0.692, y: 0.452 },    // Casilla 32
+  { x:0.750, y: 0.452 },    // Casilla 33
+  {x: 0.808, y: 0.452 },    // Casilla 34++++++++
+  {x: 0.865, y: 0.452 },    // Casilla 35++++++++
+
+  { x: 0.926, y: 0.452 },    // Casilla36
+  {  x: 0.926, y: 0.509},    // Casilla 17
+  { x: 0.926, y: 0.564 },  // Casilla 38
+
+  { x:0.865,y:0.564 },  // Casilla 39 (inicio AZUL)
+  { x: 0.808, y:0.564 },  
+  { x: 0.750, y: 0.564},  // Casilla 40
+  { x: 0.692, y: 0.564 },  // Casilla 41
+  { x: 0.632, y: 0.564 },  // Casilla 42
+
+
+  { x: 0.575, y: 0.616 },  // Casilla 43
+  { x: 0.575, y: 0.668 },  // Casilla 44
+  { x: 0.575, y: 0.724 },  // Casilla 45
+  { x: 0.575, y: 0.78 },   // Casilla 46
+  { x: 0.575, y: 0.836 },  // Casilla 47
+
+  { x: 0.575, y: 0.89 },  // Casilla 48 0.510
+  { x: 0.514, y: 0.89 },  // Casilla 49
+   { x: 0.4545, y: 0.89 },  // Casilla 50
+
+  { x: 0.510, y: 0.836 },  // Casilla 51
+  { x: 0.510, y: 0.78 },   // Casilla 52
+  { x: 0.510, y: 0.724 },  // Casilla 53
+];////////////////////////recorrido
+let posicionesRecorrido = {
+  rojo: [null, null, null, null],
+  azul: [null, null, null, null],
+  verde: [null, null, null, null],
+  amarillo: [null, null, null, null]
+};
   // --- AJUSTE DEL CANVAS ---
   function ajustarCanvas() {
     canvas.width = tablero.clientWidth;
@@ -163,24 +237,38 @@ window.addEventListener('resize', () => {
 
   // --- MOVER LA FICHA SELECCIONADA (EJEMPLO BÁSICO) ---
   function moverFichaSeleccionada() {
-    if (!fichaSeleccionada) {
-      turnoTexto.innerText = "Primero selecciona una ficha.";
-      return;
-    }
-
-    const jugador = nombresColores[fichaSeleccionada.jugador];
-    const idx = fichaSeleccionada.indice;
-
-    // 🔹 Movimiento de ejemplo: avanzar en X según el dado
-    if(posiciones[jugador][y])
-    {
-       
-    }
-    posiciones[jugador][idx].x += numeroDado * 0.02;
-
-    dibujarFichas();
-    fichaSeleccionada = null; // deseleccionamos
+  if (!fichaSeleccionada) {
+    turnoTexto.innerText = "Primero selecciona una ficha.";
+    return;
   }
+
+  const jugador = nombresColores[fichaSeleccionada.jugador]; // rojo, azul, etc.
+  const idx = fichaSeleccionada.indice;
+
+  let posicionActual = posicionesRecorrido[jugador][idx];
+
+  // Si la ficha no está en el tablero, no la movemos
+  if (posicionActual === null || posicionActual === undefined) {
+    turnoTexto.innerText = "Esa ficha aún no está en juego.";
+    return;
+  }
+
+  let nuevaPosicion = posicionActual + numeroDado;
+
+  // Si se pasa del final del recorrido, se queda quieta
+  if (nuevaPosicion >= recorrido.length) {
+    turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
+    fichaSeleccionada = null;
+    return;
+  }
+  // Actualizamos la posición en el array de posiciones
+  posiciones[jugador][idx] = recorrido[nuevaPosicion];
+  // Actualizamos la posición lógica
+  posicionesRecorrido[jugador][idx] = nuevaPosicion;
+  fichaSeleccionada = null;
+  dibujarFichas();
+}
+
 
   // --- FUNCIONES DE TURNO Y DADO ---
   const carasDado = [
@@ -231,9 +319,12 @@ let accion=false;
   function sacarFicha() {
     accion=true;
     if (gfichas[turnoActual] >= 0) {
-        let t=gfichas[turnoActual];
+      
+      let t=gfichas[turnoActual];
       let colorusando= nombresColores[turnoActual];
-      posiciones[colorusando][t]=seguimiento[colorusando];
+      let xd=entradaJugadores[colorusando];
+      posiciones[colorusando][t]=recorrido[xd];
+      posicionesRecorrido[colorusando][t] = xd
       document.getElementById('opciones-jugador').style.display = 'none';
       gfichas[turnoActual]--;
       tfichas[turnoActual]++;
