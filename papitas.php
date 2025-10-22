@@ -88,12 +88,15 @@
     canvas.height = tablero.clientHeight;
   }
 
-  tablero.onload = () => {
-    ajustarCanvas();
-    dibujarFichas();
-  };
+  window.onload = () => {
+  ajustarCanvas();
+  dibujarFichas();
+};
 
-  window.addEventListener('resize', ajustarCanvas);
+window.addEventListener('resize', () => {
+  ajustarCanvas();
+  dibujarFichas();
+});
 
   // --- DIBUJAR FICHAS ---
   function dibujarFichas() {
@@ -169,6 +172,10 @@
     const idx = fichaSeleccionada.indice;
 
     // 🔹 Movimiento de ejemplo: avanzar en X según el dado
+    if(posiciones[jugador][y])
+    {
+       
+    }
     posiciones[jugador][idx].x += numeroDado * 0.02;
 
     dibujarFichas();

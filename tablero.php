@@ -61,9 +61,9 @@
   let gfichas = [3, 3, 3, 3];
   let tfichas = [-1, -1, -1, -1];
   let win = false;
+  let fichaSeleccionada=false;
 
   // --- NUEVAS VARIABLES ---
-  let fichaSeleccionada = null;
   const radioFicha = 17;
      let posiciones = 
          {
@@ -162,13 +162,20 @@
   });
 
   // --- MOVER LA FICHA SELECCIONADA (EJEMPLO BÁSICO) ---
-  function moverFichaSeleccionada() {
+    function moverFichaSeleccionada() {
+    if (!fichaSeleccionada) {
+      turnoTexto.innerText = "Primero selecciona una ficha.";
+      return;
+    }
     const jugador = nombresColores[fichaSeleccionada.jugador];
     const idx = fichaSeleccionada.indice;
-    for(let i=0;i>numeroDado;i++)
+
+    // 🔹imiento de ejemplo: avanzar en X según el dado
+    if(posiciones[jugador][y])
     {
-        
-    }//y==0,55 x==0,060 (diferencia entre)
+       
+    }
+    
 
     dibujarFichas();
     fichaSeleccionada = null; // deseleccionamos
@@ -205,6 +212,8 @@
       }
     }, 100);
   }
+
+  
 let accion=false;
   function movimientopieza() {
     if (numeroDado === 6) {
@@ -214,9 +223,15 @@ let accion=false;
     } else {
       salio6 = false;
        document.getElementById('opciones-jugador').style.display = 'none';
-      moverFichaSeleccionada(); // mover la ficha seleccionada
+          if (fichaSeleccionada) {
+      moverFichaSeleccionada(); // mover si hay una ficha seleccionada
+    } else {
+      turnoTexto.innerText = "No seleccionaste ninguna ficha.";
+    }
+      
       pasarTurno();
     }
+    dado.addEventListener('click', tirarDado);
   }
    
   
