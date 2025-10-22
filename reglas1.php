@@ -35,16 +35,14 @@
 
       <div class="columna">
           <p>
-            <h1>Preparación:</h1>
-            Cada jugador elige un color (rojo, azul, amarillo o verde).
-            Se puede jugar de 2, 3 o 4 jugadores.
-            Cada jugador coloca sus 4 fichas en la prisión (su zona de inicio).
+            <h1>Juego:</h1>
+Para sacar una ficha de la prisión, necesitas obtener un 6 en el dado, se coloca en la salida y vuelves a tirar.
           </p>
         </div>
         <div class="columna">
-          <div class="img">
+          <div class="imgt">
           <p>
-            <img src="imagenes/tableroreglas.png" alt="">
+            <img src="imagenes/reglassacar6.png" alt=""  width="500" height="450" >
           </p>
         </div> 
         
@@ -54,12 +52,17 @@
   
     <!-- Fondo animado -->
     <div class="fondo"></div>
-      <div class="imgi">
-      <a href="reglas1.php">
-        <img src="imagenes/felchader.png" alt="Descripción de la imagen">
-      </a>
-    </div>
 
+    <div class="imgd"> 
+        <a href="reglas.php">
+         <img src="imagenes/flechaizq.png" alt=""> 
+        </a> 
+    </div> 
+    <div class="imgi"> 
+        <a href="reglas2.php"> 
+          <img src="imagenes/felchader.png" alt="">
+        </a> 
+    </div>
   <!-- Contenedor de figuras animadas -->
   <div class="figuras">
     <!-- Se repiten varias figuras con diferentes colores -->

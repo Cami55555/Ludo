@@ -35,16 +35,14 @@
 
       <div class="columna">
           <p>
-            <h1>Preparación:</h1>
-            Cada jugador elige un color (rojo, azul, amarillo o verde).
-            Se puede jugar de 2, 3 o 4 jugadores.
-            Cada jugador coloca sus 4 fichas en la prisión (su zona de inicio).
-          </p>
+            <h1 >Juego:</h1>
+Si una ficha cae en una casilla donde hay una ficha de otro jugador. La "come", es decir, la ficha del rival vuelve a su prisión.
+</p>
         </div>
         <div class="columna">
           <div class="img">
           <p>
-            <img src="imagenes/tableroreglas.png" alt="">
+            <img src="imagenes/reglascomer.png" alt="" width="450" height="450" >
           </p>
         </div> 
         
@@ -54,12 +52,17 @@
   
     <!-- Fondo animado -->
     <div class="fondo"></div>
-      <div class="imgi">
-      <a href="reglas1.php">
-        <img src="imagenes/felchader.png" alt="Descripción de la imagen">
-      </a>
-    </div>
 
+    <div class="imgd"> 
+        <a href="reglas3.php">
+         <img src="imagenes/flechaizq.png" alt=""> 
+        </a> 
+    </div> 
+    <div class="imgi"> 
+        <a href="reglas5.php"> 
+          <img src="imagenes/felchader.png" alt="">
+        </a> 
+    </div>
   <!-- Contenedor de figuras animadas -->
   <div class="figuras">
     <!-- Se repiten varias figuras con diferentes colores -->
