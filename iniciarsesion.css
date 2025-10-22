@@ -258,3 +258,18 @@ body {
 .sign:hover {
   background-color: #181616;
 }
+/* Texto en blanco fijo */
+.no-cuenta {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff; /* blanco brillante */
+}
+
+/* Enlace animado con colores del formulario */
+.no-cuenta a.animado {
+  text-decoration: underline;
+  animation: cambioLetra 10s linear infinite alternate; /* animación del formulario */
+}
+

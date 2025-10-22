@@ -61,5 +61,14 @@
         "clave": "12345",
         "edad": "18",
         "wins": 0
+    },
+    {
+        "nombre": "oreo",
+        "apellido": "oreosito",
+        "usuario": "oreogod",
+        "mail": "oreo@gmail.com",
+        "clave": "oreo",
+        "edad": "14",
+        "wins": 0
     }
 ]

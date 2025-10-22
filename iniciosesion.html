@@ -8,14 +8,8 @@
 </head>
 <body>
 
-  <!-- ======================
-       FONDO BORROSO
-       ====================== -->
   <div class="fondo"></div>
 
-  <!-- ======================
-       FIGURAS ANIMADAS
-       ====================== -->
   <div class="figuras">
     <span class="figura rojo"></span>
     <span class="figura azul"></span>
@@ -29,21 +23,16 @@
     <span class="figura azul"></span>
   </div>
 
-  <!-- ======================
-       HEADER / MENÚ NAV
-       ====================== -->
   <header class="main-header">
     <div class="logo">
       <a href="/index.php">
         <img src="/imagenes/logo.png" alt="Home" />
       </a>
       <div class="texto-logo">
-        <!-- Título del logo -->
         <h1 class="titulo-borde">Inicia Sesión</h1>
       </div>
     </div>
 
-    <!-- Menú de navegación (enlace de iniciar sesión eliminado) -->
     <nav class="nav-bar">
       <a href="index.php">Inicio</a>
       <a href="registrarse.html">Registrarse</a>
@@ -51,11 +40,7 @@
     </nav>
   </header>
 
-  <!-- ======================
-       FORMULARIO DE INICIO DE SESIÓN
-       ====================== -->
   <div class="form-container">
-    <!-- Título del formulario con letra más angosta y borde blanco -->
     <p class="title titulo-borde">Inicia Sesión</p>
 
     <form class="form" action="login.php" method="post">
@@ -75,7 +60,13 @@
         <label for="clave2">Confirmar Contraseña:</label>
         <input type="password" name="clave2" id="clave2" required />
       </div>
+
       <button type="submit" class="sign">Iniciar sesión</button>
+
+          <p class="no-cuenta">
+             Todavía no tienes una cuenta? 
+            <a href="registrarse.html" class="animado">Regístrate aquí</a>
+          </p>
     </form>
   </div>
 
