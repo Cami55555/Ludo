@@ -95,39 +95,44 @@
 
   window.addEventListener('resize', ajustarCanvas);
 
-  // --- DIBUJAR FICHAS ---
-  function dibujarFichas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < colores.length; i++) {
-      const colorNombre = nombresColores[i];
-      const colorHex = colores[i];
-      posiciones[colorNombre].forEach((pos, j) => {
-        const cx = pos.x * canvas.width;
-        const cy = pos.y * canvas.height;
-        ctx.beginPath();
-        ctx.arc(cx, cy, radioFicha, 0, Math.PI * 2);
-        ctx.fillStyle = colorHex;
-        ctx.fill();
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+  // --- DIBUJAR FICHAS CORREGIDO Y COMENTADO ---
+function dibujarFichas() {
+  // Limpia el canvas para redibujar las fichas sin dejar rastro
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // 🔥 Resaltar si está seleccionada
-       if (
-            fichaSeleccionada &&
-           fichaSeleccionada.jugador === i &&
-           fichaSeleccionada.indice === j
-         ) {
-        // Dibuja un círculo exterior más grande para resaltar
-          ctx.lineWidth = 5;
-           ctx.strokeStyle = 'yellow'; // color que resalte
-           ctx.beginPath();
-           ctx.arc(cx, cy, radioFicha + 5, 0, Math.PI * 2);
-           ctx.stroke();
-}
-      });
-    }
+  // Recorre solo los jugadores que están activos según la selección
+  for (let i = 0; i < cantidadJugadores; i++) {
+    const colorNombre = nombresColores[i]; // nombre del color del jugador
+    const colorHex = colores[i];           // color hex de la ficha
+
+    // Recorre todas las fichas de ese jugador
+    posiciones[colorNombre].forEach((pos, j) => {
+      const cx = pos.x * canvas.width;  // calcula la posición X en pixeles
+      const cy = pos.y * canvas.height; // calcula la posición Y en pixeles
+
+      // Dibuja la ficha como un círculo
+      ctx.beginPath();
+      ctx.arc(cx, cy, radioFicha, 0, Math.PI * 2); // círculo
+      ctx.fillStyle = colorHex; // color de la ficha
+      ctx.fill();               // rellena el círculo
+      ctx.strokeStyle = '#000'; // borde negro
+      ctx.lineWidth = 2;        // grosor del borde
+      ctx.stroke();             // dibuja el borde
+
+      // 🔥 Resalta la ficha seleccionada si corresponde
+      if (fichaSeleccionada &&
+          fichaSeleccionada.jugador === i &&
+          fichaSeleccionada.indice === j) {
+        ctx.lineWidth = 5;         // borde más grueso
+        ctx.strokeStyle = 'yellow';// color resaltado
+        ctx.beginPath();
+        ctx.arc(cx, cy, radioFicha + 5, 0, Math.PI * 2); // círculo externo
+        ctx.stroke(); // dibuja el resaltado
+      }
+    });
   }
+}
+
 
   // --- DETECTAR CLIC EN UNA FICHA ---
   canvas.addEventListener('click', (e) => {

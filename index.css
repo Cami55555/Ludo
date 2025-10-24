@@ -42,15 +42,15 @@ body {
 ----------------------- */
 .menu-principal {
   position: relative;
-  z-index: 10; /* Encima del fondo y figuras */
+  z-index: 20; /* Encima del fondo y figuras */
   background: rgba(25, 25, 40, 0.9); /* Fondo semitransparente oscuro */
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: center; /* Centra todo horizontalmente */
   padding: 0 40px;
-  border-bottom: 2px solid rgba(255,255,255,0.5); /* Borde inferior */
-  box-shadow: 0 0 15px rgba(0,0,0,0.7); /* Sombra para resaltar */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Borde inferior */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Sombra para resaltar */
   border-radius: 8px; /* Bordes redondeados */
 }
 
@@ -58,8 +58,10 @@ body {
   list-style: none; /* Quita viñetas */
   display: flex; /* Menú horizontal */
   gap: 30px; /* Espacio entre enlaces */
-  margin: 0;
+  margin-left: 130%;
   padding: 0;
+  z-index: 20;
+  margin-top: 0; /* mover para arriba*/
 }
 
 .menu-principal li a {
@@ -68,16 +70,22 @@ body {
   font-weight: bold;
   font-size: 18px;
   transition: 0.3s; /* Animación suave al pasar el mouse */
+  z-index: 10;
+   white-space: nowrap; /* Evita que "Iniciar sesión" se divida en dos líneas */
 }
 
 .menu-principal li a:hover {
   color: #00ffff; /* Color cian brillante al pasar el mouse */
+  z-index: 10;
 }
 
-.logo-juego img {
-  height: 50px; /* Tamaño del logo */
+.logo {
+  display: flex;
+  height: 25px;
   width: auto;
+  margin-left: -70%;
 }
+
 
 /* ----------------------
    TÍTULOS

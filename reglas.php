@@ -19,9 +19,9 @@
           <!-- Aquí se agregará el logo del juego más adelante -->
         </div>
         <ul>
-          <li><a href="jugadores.php">Jugar</a></li>
           <li><a href="index.php">Inicio</a></li>
           <li><a href="historia.php">Historia</a></li>
+          <li><a href="iniciosesion.html">Iniciar sesion</a></li>
         </ul>
       </nav>
     </header>

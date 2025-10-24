@@ -131,6 +131,7 @@ body {
   font-size: 18px;
   transition: 0.3s; /* Animación suave al pasar el mouse */
   z-index: 10;
+  white-space: nowrap; /* Evita que "Iniciar sesión" se divida en dos líneas */
 }
 
 .menu-principal li a:hover {
@@ -190,7 +191,7 @@ body {
   display: flex;
   height: 25px;
   width: auto;
-  margin-left: -80%;
+  margin-left: -70%;
 }
 
 /* Animación del gradiente horizontal */

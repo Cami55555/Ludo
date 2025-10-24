@@ -16,6 +16,9 @@ session_start();
   <!-- Menú principal -->
   <header>
     <nav class="menu-principal">
+      <div class="logo">
+        <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
+        <div>
       <div class="logo-juego">
         <!-- <img src="imagenes/logo.png" alt="Logo Ludo-Patia"> -->
       </div>
