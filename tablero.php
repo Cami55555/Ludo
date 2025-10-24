@@ -95,43 +95,52 @@
 
   window.addEventListener('resize', ajustarCanvas);
 
-  // --- DIBUJAR FICHAS CORREGIDO Y COMENTADO ---
+ // ----------------------
+// Función: dibuja todas las fichas en el canvas
+// ----------------------
 function dibujarFichas() {
-  // Limpia el canvas para redibujar las fichas sin dejar rastro
+  // --- Obtener la cantidad de jugadores desde la URL ---
+  // Esto asegura que solo se dibujen los jugadores seleccionados
+  const urlParams = new URLSearchParams(window.location.search);
+  const cantidadJugadores = parseInt(urlParams.get('jugadores')) || 4; // por defecto 4 jugadores
+
+  // Limpia todo el canvas antes de dibujar
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Recorre solo los jugadores que están activos según la selección
+  // Recorre solo los jugadores activos según la selección
   for (let i = 0; i < cantidadJugadores; i++) {
-    const colorNombre = nombresColores[i]; // nombre del color del jugador
-    const colorHex = colores[i];           // color hex de la ficha
+    const colorNombre = nombresColores[i]; // nombre del color del jugador ('rojo', 'azul', etc.)
+    const colorHex = colores[i];           // color para el relleno de la ficha
 
-    // Recorre todas las fichas de ese jugador
+    // Recorre todas las fichas de este jugador
     posiciones[colorNombre].forEach((pos, j) => {
-      const cx = pos.x * canvas.width;  // calcula la posición X en pixeles
-      const cy = pos.y * canvas.height; // calcula la posición Y en pixeles
+      const cx = pos.x * canvas.width;  // posición X en pixeles
+      const cy = pos.y * canvas.height; // posición Y en pixeles
 
       // Dibuja la ficha como un círculo
       ctx.beginPath();
-      ctx.arc(cx, cy, radioFicha, 0, Math.PI * 2); // círculo
-      ctx.fillStyle = colorHex; // color de la ficha
-      ctx.fill();               // rellena el círculo
+      ctx.arc(cx, cy, radioFicha, 0, Math.PI * 2); // círculo completo
+      ctx.fillStyle = colorHex; // color de relleno
+      ctx.fill();               // aplica el relleno
       ctx.strokeStyle = '#000'; // borde negro
       ctx.lineWidth = 2;        // grosor del borde
       ctx.stroke();             // dibuja el borde
 
-      // 🔥 Resalta la ficha seleccionada si corresponde
+      // 🔥 Si esta ficha está seleccionada, dibuja un borde adicional para resaltarla
       if (fichaSeleccionada &&
           fichaSeleccionada.jugador === i &&
           fichaSeleccionada.indice === j) {
-        ctx.lineWidth = 5;         // borde más grueso
-        ctx.strokeStyle = 'yellow';// color resaltado
+        ctx.lineWidth = 5;          // borde más grueso
+        ctx.strokeStyle = 'yellow'; // color amarillo para resaltar
         ctx.beginPath();
         ctx.arc(cx, cy, radioFicha + 5, 0, Math.PI * 2); // círculo externo
-        ctx.stroke(); // dibuja el resaltado
+        ctx.stroke();               // dibuja el resaltado
       }
     });
   }
 }
+
+
 
 
   // --- DETECTAR CLIC EN UNA FICHA ---
