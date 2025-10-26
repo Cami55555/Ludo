@@ -24,14 +24,13 @@ $usuario = $_SESSION["usuario"];
       <div class="logo">
         <a href="/index.php"><img src="/imagenes/logo.png" alt="Home" /></a>
         <div class="texto-logo">
-          <h1>Perfil</h1>
 
         </div>
       </div>
       <nav class="nav-bar">
-        <a href="index.php">Inicio</a>
-        <a href="...">Jugar</a>
-        <a href="/reseñas/reseñas.php">Reglas</a>
+        <a href="jugadores.php">Jugar</a>
+        <a href="historia.php">Historia</a>
+        <a href="reglas.php">Reglas</a>
 
       </nav>
     </header>

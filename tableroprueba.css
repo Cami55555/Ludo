@@ -1,0 +1,250 @@
+/* =======================
+   VARIABLES Y ANIMACIONES
+   ======================= */
+
+/* Definimos una variable global de color (puede usarse en otros estilos) */
+:root {
+  --color-anim: #fff;
+}
+
+/* Animación para cambiar el color del texto gradualmente */
+@keyframes cambioLetra {
+  0% { color: #1f1f1f; }    /* inicio negro oscuro */
+  25% { color: #ffc857; }   /* amarillo */
+  50% { color: #f25c54; }   /* rojo */
+  75% { color: #a8e6cf; }   /* verde claro */
+  100% { color: #f5f5f5; }  /* blanco */
+}
+
+/* Animación para cambiar el color del borde gradualmente */
+@keyframes cambioBorde {
+  0% { border-color: #1f1f1f; }
+  25% { border-color: #ffc857; }
+  50% { border-color: #f25c54; }
+  75% { border-color: #a8e6cf; }
+  100% { border-color: #f5f5f5; }
+}
+
+/* Animación para cambiar sombras de cajas gradualmente */
+@keyframes cambioBox {
+  0% { box-shadow: 0 0 9px rgba(31,31,31,1); }
+  25% { box-shadow: 0 0 9px rgba(255,200,87,1); }
+  50% { box-shadow: 0 0 9px rgba(242,92,84,1); }
+  75% { box-shadow: 0 0 9px rgba(168,230,207,1); }
+  100% { box-shadow: 0 0 9px rgba(245,245,245,1); }
+}
+
+/* Animación para que las figuras caigan y roten */
+@keyframes caer {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 0.9; }   /* inicio arriba */
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; } /* final abajo */
+}
+
+/* =======================
+   BODY Y FONDO ANIMADO
+   ======================= */
+
+/* Estilo principal del body */
+body {
+  margin: 0;                      /* sin margen */
+  padding: 0;                     /* sin padding */
+  font-family: 'Poppins', sans-serif; /* fuente moderna */
+  background: linear-gradient(135deg, #0a0a0a, #1a1a2e); /* degradado oscuro */
+  overflow-x: hidden;             /* evita scroll horizontal */
+  color: white;                   /* color de texto */
+  min-height: 100vh;              /* altura mínima de la pantalla */
+  cursor: url("/imagenes/cuchillo.cur") 0 0, auto; /* cursor personalizado */
+  position: relative;             /* para posicionar hijos relativos */
+  text-align: center;             /* centra textos por defecto */
+}
+
+/* Fondo borroso detrás de todo */
+.fondo {
+  position: fixed;        /* siempre en la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;            /* ocupa todo el ancho */
+  height: 100%;           /* ocupa todo el alto */
+  backdrop-filter: blur(6px); /* efecto borroso */
+  background: rgba(30, 30, 50, 0.5); /* semi-transparente */
+  z-index: 0;             /* detrás de todo */
+  pointer-events: none;   /* no interactúa con clicks */
+}
+
+/* Contenedor de figuras animadas */
+.figuras {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 5;             /* encima del fondo pero detrás del tablero */
+  pointer-events: none;   /* no clickeable */
+}
+
+/* Cada figura individual */
+.figura {
+  position: absolute;      /* posición libre */
+  top: -100px;             /* inicia fuera de la pantalla */
+  width: 40px;
+  height: 40px;
+  opacity: 0.9;            /* algo transparente */
+  animation: caer 10s linear infinite; /* animación de caída infinita */
+  border-radius: 0;        /* sin bordes redondeados por defecto */
+}
+
+/* Colores y formas de figuras */
+.rojo { background: #ff0000; }               /* cuadrado rojo */
+.azul { background: #0066ff; border-radius: 50%; } /* círculo azul */
+.verde { background: #00cc00; }              /* cuadrado verde */
+.amarillo { background: #ffff33; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); } /* triángulo amarillo */
+
+/* Posición horizontal y duración individual de cada figura */
+.figura:nth-child(1) { left: 5%; animation-duration: 8s; }
+.figura:nth-child(2) { left: 15%; animation-duration: 12s; }
+.figura:nth-child(3) { left: 30%; animation-duration: 9s; }
+.figura:nth-child(4) { left: 45%; animation-duration: 11s; }
+.figura:nth-child(5) { left: 60%; animation-duration: 10s; }
+.figura:nth-child(6) { left: 75%; animation-duration: 14s; }
+.figura:nth-child(7) { left: 85%; animation-duration: 8s; }
+.figura:nth-child(8) { left: 50%; animation-duration: 13s; }
+.figura:nth-child(9) { left: 25%; animation-duration: 9s; }
+.figura:nth-child(10){ left: 90%; animation-duration: 11s; }
+
+/* =======================
+   NAV / MENÚ
+   ======================= */
+
+/* Contenedor principal del header */
+.main-header {
+  position: relative;
+  z-index: 10;                    /* encima de fondo y figuras */
+  background: rgba(25,25,40,0.9); /* fondo semi-transparente */
+  height: 70px;                   /* altura fija */
+  display: flex;                  /* flexbox */
+  align-items: center;            /* vertical centrado */
+  justify-content: space-between; /* espacios entre logo y nav */
+  padding: 0 40px;                /* padding lateral */
+  border-bottom: 2px solid rgba(255,255,255,0.5); /* borde inferior */
+  box-shadow: 0 0 15px rgba(0,0,0,0.7); /* sombra */
+  border-radius: 8px;             /* esquinas redondeadas */
+}
+
+/* Logo */
+.logo {
+  display: flex;       /* flex para imagen y texto */
+  align-items: center;
+  gap: 15px;           /* espacio entre elementos */
+}
+
+/* Imagen del logo */
+.logo img {
+  height: 50px;
+  width: auto;         /* mantiene proporción */
+  border-radius: 50%;  /* redondo */
+  border: 2px solid;   /* borde visible */
+  animation: cambioBorde 10s linear infinite alternate; /* animación de borde */
+}
+
+/* Texto dentro del logo */
+.texto-logo h1 {
+  margin: 0;                              /* sin margen */
+  font-size: 24px;
+  animation: cambioLetra 10s linear infinite alternate; /* animación de color */
+}
+
+/* Barra de navegación */
+.nav-bar {
+  display: flex;
+  gap: 25px; /* separación entre links */
+}
+
+/* Estilo de los links */
+.nav-bar a {
+  color: #ffffff;                 /* blanco */
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* animación hover */
+}
+
+/* Hover de los links */
+.nav-bar a:hover {
+  color: #ff0000;                   /* rojo al pasar el mouse */
+  background-color: rgba(255,255,255,0.1); /* fondo semi-transparente */
+  transform: scale(1.1);            /* aumenta tamaño */
+}
+
+/* =======================
+   PERFIL / FORMULARIO
+   ======================= */
+
+/* Contenedor general del perfil */
+.form-container {
+  position: relative;
+  margin: 70px auto;              /* centrado vertical y horizontal */
+  width: 350px;
+  border-radius: 0.75rem;
+  background-color: #1f1f1f;
+  padding: 1rem;
+  color: #f5f5f5;
+  box-shadow: 0px 1px 2.5px #f25c54; /* sombra roja */
+  animation: cambioBox 10s linear infinite alternate; /* animación sombra */
+  z-index: 15;                   /* encima de figuras */
+}
+
+/* Título del formulario */
+.title {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  animation: cambioLetra 10s linear infinite alternate; /* color animado */
+}
+
+/* Datos del perfil */
+.perfil-datos {
+  margin-top: 1rem;
+}
+
+/* Cada dato individual */
+.dato {
+  margin-bottom: 10px;
+}
+
+/* Etiqueta (ej: Nombre:) */
+.etiqueta {
+  font-weight: bold;
+  animation: cambioLetra 10s linear infinite alternate; /* color animado */
+}
+
+/* Valor (ej: Juan) */
+.valor {
+  color: #f5f5f5;
+  padding-left: 5px;
+  border-left: 2px solid #a8e6cf; /* barra izquierda */
+  animation: cambioBorde 10s linear infinite alternate; /* borde animado */
+}
+
+/* Botón Cerrar Sesión */
+.sign {
+  display: block;
+  width: 30%;
+  border-radius: 6px; 
+  box-shadow: 0px 1px 2.5px #f25c54; 
+  outline: 0;
+  background-color: #1f1f1f;
+  padding: 10px 16px; 
+  color: #f5f5f5;
+  font-weight: bold;
+  cursor: pointer;
+  animation: cambioBox 10s linear infinite alternate; /* sombra animada */
+  position: absolute;   /* posición relativa al contenedor */
+  bottom: 140px;        /* desde abajo */
+  left: 50%;            /* centrado horizontal */
+  transform: translateX(-50%);
+  z-index: 15;          /* encima de todo */
+}
