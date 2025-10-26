@@ -1,69 +1,124 @@
 /* =======================
    VARIABLES Y ANIMACIONES
    ======================= */
-:root { --color-anim: #fff; }
 
-@keyframes cambioLetra {
-  0% { color: #ffffff; } 25% { color: #ffc857; } 50% { color: #f25c54; } 75% { color: #0aff02; } 100% { color: #0066ff; }
+/* :root sirve para definir variables que podemos usar en todo el CSS */
+:root { 
+  --color-anim: #fff; /* esta variable guarda un color blanco para animaciones */
 }
+
+/* Animación para cambiar el color del texto */
+@keyframes cambioLetra {
+  0%   { color: #ffffff; }   /* empieza en blanco */
+  25%  { color: #ffc857; }   /* cambia a amarillo/naranja */
+  50%  { color: #f25c54; }   /* cambia a rojo */
+  75%  { color: #0aff02; }   /* cambia a verde */
+  100% { color: #0066ff; }   /* termina en azul */
+}
+
+/* Animación para cambiar la sombra de los elementos (efecto glow/neón) */
 @keyframes cambioBox {
-  0% { box-shadow: 0 0 9px #ffffff; } 25% { box-shadow: 0 0 9px #ffc857; } 50% { box-shadow: 0 0 9px #f25c54; } 75% { box-shadow: 0 0 9px #0aff02; } 100% { box-shadow: 0 0 9px #0066ff; }
+  0%   { box-shadow: 0 0 9px #ffffff; }
+  25%  { box-shadow: 0 0 9px #ffc857; }
+  50%  { box-shadow: 0 0 9px #f25c54; }
+  75%  { box-shadow: 0 0 9px #0aff02; }
+  100% { box-shadow: 0 0 9px #0066ff; }
 }
 
 /* =======================
    BODY
    ======================= */
 body {
-  margin: 0; padding: 0; font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
-  color: white;
-  min-height: 100vh;
+  margin: 0;            /* quita los márgenes por defecto del navegador */
+  padding: 0;           /* quita el padding por defecto */
+  font-family: 'Poppins', sans-serif; /* fuente moderna para todo el texto */
+  background: linear-gradient(135deg, #0a0a0a, #1a1a2e); /* fondo degradado oscuro */
+  color: white;         /* color por defecto del texto */
+  min-height: 100vh;    /* asegura que el body ocupe al menos toda la pantalla */
 }
 
 /* =======================
    FORMULARIO
    ======================= */
 .form-container {
-  margin: 50px auto; width: 400px;
-  padding: 1rem; border-radius: 0.75rem;
-  background-color: #1f1f1f;
-  color: #f5f5f5;
-  box-shadow: 0 5px 9px 2px #a8e6cf;
-  animation: cambioBox 10s linear infinite alternate;
+  margin: 50px auto;       /* separa del top y centra horizontalmente */
+  width: 400px;             /* ancho del formulario */
+  padding: 1rem;            /* espacio dentro del formulario */
+  border-radius: 0.75rem;   /* bordes redondeados */
+  background-color: #1f1f1f; /* color oscuro del fondo */
+  color: #f5f5f5;           /* color de texto dentro del form */
+  box-shadow: 0 5px 9px 2px #a8e6cf; /* sombra ligera alrededor del form */
+  animation: cambioBox 10s linear infinite alternate; /* aplica la animación glow */
 }
 
 .title {
-  text-align: center; font-size: 1.8rem; margin-bottom: 1rem;
-  font-weight: 700; letter-spacing: 0.5px; animation: cambioLetra 10s linear infinite alternate;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.5); color: transparent;
+  text-align: center;           /* centra el título */
+  font-size: 1.8rem;            /* tamaño del título */
+  margin-bottom: 1rem;          /* espacio debajo del título */
+  font-weight: 700;             /* texto en negrita */
+  letter-spacing: 0.5px;        /* espacio entre letras */
+  animation: cambioLetra 10s linear infinite alternate; /* aplica animación de colores */
+  -webkit-text-stroke: 1px rgba(255,255,255,0.5); /* borde fino alrededor de letras */
+  color: transparent;           /* hace transparente el relleno para que solo se vea el borde */
 }
 
-.input-group { margin-top: 0.5rem; }
-.input-group label { display: block; margin-bottom: 4px; color: #fff; }
+/* Grupo de inputs (nombre, email, etc.) */
+.input-group { 
+  margin-top: 0.5rem; /* separa un poco del elemento anterior */
+}
+.input-group label { 
+  display: block;     /* hace que cada label esté en su línea */
+  margin-bottom: 4px; /* espacio debajo del label */
+  color: #fff;        /* color del texto del label */
+}
 .input-group input {
-  width: 92%; border-radius: 0.375rem; padding: 0.5rem 0.8rem;
-  border: 1px solid #a8e6cf; outline: none; background-color: #1f1f1f;
-  color: #fff; box-shadow: 0px 1px 2.5px #a8e6cf; animation: cambioBox 10s linear infinite alternate;
+  width: 92%;                       /* ancho casi completo del formulario */
+  border-radius: 0.375rem;          /* bordes redondeados */
+  padding: 0.5rem 0.8rem;           /* espacio dentro del input */
+  border: 1px solid #a8e6cf;        /* borde del input */
+  outline: none;                     /* quita borde al hacer click */
+  background-color: #1f1f1f;        /* fondo del input */
+  color: #fff;                       /* color del texto dentro del input */
+  box-shadow: 0px 1px 2.5px #a8e6cf; /* sombra pequeña */
+  animation: cambioBox 10s linear infinite alternate; /* aplica animación glow */
 }
 
+/* Botón de enviar / registrarse */
 .sign {
-  display: block; margin: 1rem auto; width: 80%; padding: 0.5rem 0.8rem;
-  border-radius: 0.375rem; border: 1px solid #a8e6cf;
-  background-color: #1f1f1f; color: #fff; font-weight: bold;
-  cursor: pointer; box-shadow: 0px 1px 2.5px #a8e6cf; animation: cambioBox 10s linear infinite alternate;
+  display: block;
+  margin: 1rem auto; /* separa del contenido de arriba y lo centra */
+  width: 80%;        /* ancho del botón */
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.375rem;
+  border: 1px solid #a8e6cf; 
+  background-color: #1f1f1f;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer; /* cambia el cursor al pasar por encima */
+  box-shadow: 0px 1px 2.5px #a8e6cf; 
+  animation: cambioBox 10s linear infinite alternate; /* animación glow */
 }
-
-.sign:hover { background-color: #181616; }
+.sign:hover { 
+  background-color: #181616; /* cambia el color cuando pasas el mouse */
+}
 
 /* =======================
    CIRCULOS DE COLORES
    ======================= */
 .colores-container {
-  display: flex; gap: 10px; margin-top: 5px;
+  display: flex;  /* los elementos se alinean en fila */
+  gap: 10px;      /* espacio entre cada círculo */
+  margin-top: 5px;
 }
 .circulo-color {
-  width: 35px; height: 35px; border-radius: 50%;
-  border: 2px solid #fff; background-color: #fff;
-  cursor: pointer; transition: all 0.2s ease;
+  width: 35px; 
+  height: 35px;
+  border-radius: 50%;       /* lo hace redondo */
+  border: 2px solid #fff;   /* borde blanco */
+  background-color: #fff;   /* color inicial del círculo */
+  cursor: pointer;          /* cursor cambia al pasar por encima */
+  transition: all 0.2s ease; /* transición suave al cambiar estilo */
 }
-.circulo-color.seleccionado { border: 4px solid yellow; }
+.circulo-color.seleccionado { 
+  border: 4px solid yellow; /* cuando se selecciona, el borde se hace más grueso y amarillo */
+}
