@@ -9,6 +9,7 @@ require 'verificarSesion.php';
 $cantidadJugadores = isset($_GET['jugadores']) ? intval($_GET['jugadores']) : 2;
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +25,7 @@ $cantidadJugadores = isset($_GET['jugadores']) ? intval($_GET['jugadores']) : 2;
   <h1 class="title">Configurar Jugadores</h1>
 
   <!-- Formulario que enviará los datos al tablero -->
-  <form action="tableroprueba.php" method="POST" id="form-jugadores">
+  <form action="papitas.php" method="POST" id="form-jugadores">
     <!-- Guarda la cantidad de jugadores de manera oculta -->
     <input type="hidden" name="cantidadJugadores" value="<?= $cantidadJugadores ?>">
 

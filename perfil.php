@@ -77,11 +77,6 @@ $usuario = $_SESSION["usuario"];
     </div>
   </div>
   <div class="dato">
-      <p class="etiqueta">Clave:</p>
-      <p class="valor"><?php echo $_SESSION['clave']; ?></p>
-    </div>
-  </div>
-  <div class="dato">
       <p class="etiqueta">Edad:</p>
       <p class="valor"><?php echo $_SESSION['edad']; ?></p>
     </div>
