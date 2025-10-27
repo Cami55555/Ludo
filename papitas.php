@@ -47,6 +47,9 @@
   const colores = ['red', 'blue', 'green', 'yellow'];
   const nombresColores = ['rojo', 'azul', 'verde', 'amarillo'];
 
+   const urlParams = new URLSearchParams(window.location.search);//para que dibujar fichas
+  const cantidadJugadores = parseInt(urlParams.get('jugadores')) || 4; // por defecto 4 jugadores
+
   const canvas = document.getElementById('canvas-ludo');
   const ctx = canvas.getContext('2d');
   const tablero = document.querySelector('.imagen-tablero');
@@ -167,41 +170,41 @@ let posicionesRecorrido = {
   dibujarFichas();
 };
 
-window.addEventListener('resize', () => {
-  ajustarCanvas();
-  dibujarFichas();
-});
+
 
   // --- DIBUJAR FICHAS ---
-  function dibujarFichas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < colores.length; i++) {
-      const colorNombre = nombresColores[i];
-      const colorHex = colores[i];
-      posiciones[colorNombre].forEach((pos, j) => {
+   function dibujarFichas() {
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // limpia canvas
+    for (let i = 0; i < cantidadJugadores; i++) {
+      const colorJugador = colores[i];
+      if (!posiciones[colorJugador]) continue;
+
+      posiciones[colorJugador].forEach((pos, j) => {
         const cx = pos.x * canvas.width;
         const cy = pos.y * canvas.height;
+
+        // dibuja la ficha
         ctx.beginPath();
-        ctx.arc(cx, cy, radioFicha, 0, Math.PI * 2);
-        ctx.fillStyle = colorHex;
+        ctx.arc(cx, cy, radioFicha, 1, Math.PI * 2);
+        ctx.fillStyle = colorJugador;
         ctx.fill();
         ctx.strokeStyle = '#000';
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // 🔥 Resaltar si está seleccionada
-        if (
-          fichaSeleccionada &&
-          fichaSeleccionada.jugador === i &&
-          fichaSeleccionada.indice === j
-        ) {
-          ctx.lineWidth = 4;
-          ctx.strokeStyle = 'white';
+        // resalta ficha seleccionada
+        if (fichaSeleccionada && fichaSeleccionada.jugador === i && fichaSeleccionada.indice === j) {
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = 'gold';
+          ctx.beginPath();
+          ctx.arc(cx, cy, radioFicha + 5, 0, Math.PI * 2);
           ctx.stroke();
         }
       });
     }
   }
+
 
   // --- DETECTAR CLIC EN UNA FICHA ---
   canvas.addEventListener('click', (e) => {
