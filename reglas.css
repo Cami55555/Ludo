@@ -118,7 +118,7 @@ body {
   list-style: none; /* Quita viñetas */
   display: flex; /* Menú horizontal */
   gap: 30px; /* Espacio entre enlaces */
-  margin-left: 150%;
+  margin-left: 125%;
   padding: 0;
   z-index: 20;
   margin-top: 0; /* mover para arriba*/

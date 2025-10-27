@@ -43,41 +43,34 @@
     
     <!--titulo-->
        <div class="titulos">
-        <h2 class="titulo-ludo">Historia
-
-        </h2>
+        <h2 class="titulo-ludo">Historia</h2>
       </div>
     <div class="recuadros-reglas">
       
 
       <div class="columna">
           <p>
-           Era un lunes cualquiera en la escuela, pero en la clase de programación algo especial estaba por pasar. El profe entró con una sonrisa y dijo:
+            —“Y que las partidas puedan guardarse para retomarlas después,” añadió Cami, pensando en lo práctico.
 
-—“Chicos, para el proyecto final van a elegir qué quieren programar. Puede ser un juego, una app, lo que quieran, pero tienen que trabajar en equipo.”
+La emoción crecía, y con ella las ganas de comenzar a programar.
 
-Cata, Lupe, Cami y Valen se miraron. Era la oportunidad que habían estado esperando para hacer algo juntos, pero elegir el proyecto sería todo un desafío.
+Durante las semanas siguientes, las discusiones siguieron. Hubo momentos en que casi se pelean porque Lupe quería que el juego fuera súper justo y sin trampas, mientras Valen insistía en poner “sorpresas” para que la partida fuera impredecible.
 
-—“¿Y qué se les ocurre?” —preguntó el profe, mientras empezaba a repartir hojas.
+Cami quería una interfaz limpia, pero Cata soñaba con colores y animaciones que explotaran en la pantalla.
 
-Lupe fue la primera en hablar:
+Pero cada desacuerdo los hacía pensar mejor, buscar soluciones y sobre todo, trabajar más unidos.
           </p>
         </div>
         <div class="columna">
-          <div class="img">
+          <div class="imgt">
           <p>
-            —“Podríamos hacer un juego súper complejo, algo con gráficos 3D, inteligencia artificial…”
+          Finalmente, en la última semana antes de entregar el proyecto, después de muchas horas sin dormir, el Ludo digital estaba listo.
 
-—“¿Pero quién va a terminar algo así a tiempo?” —interrumpió Cata con una sonrisa— “Yo digo que algo simple y divertido.”
+Cuando lo probaron juntos por primera vez, hubo risas, gritos de emoción y hasta algún “¡No puede ser!” cuando una ficha inesperadamente sacó ventaja.
 
-Valen, que estaba medio distraído, levantó la mirada y soltó:
+Ese día, entendieron que no solo habían programado un juego, sino que habían construido algo mucho más grande: una experiencia, un recuerdo y una historia para contar.
 
-—“¿Y si hacemos un Ludo? Todos lo conocemos y sería divertido programarlo.”
 
-Hubo un silencio incómodo. Cami se rió:
-—“¿Ludo? ¿En serio? Eso es tan básico que no sé si vale la pena.”
-
-—“Pero eso es lo bueno,” dijo Valen con entusiasmo— “Es simple, podemos hacerlo rápido, y si le ponemos cosas nuestras, seguro queda genial.”
           </p>
         </div> 
         
@@ -87,11 +80,12 @@ Hubo un silencio incómodo. Cami se rió:
   
     <!-- Fondo animado -->
     <div class="fondo"></div>
-      <div class="imgi">
-      <a href="historia1.php">
-        <img src="imagenes/felchader.png" alt="Descripción de la imagen">
-      </a>
-    </div>
+
+    <div class="imgd"> 
+        <a href="historia1.php">
+         <img src="imagenes/flechaizq.png" alt=""> 
+        </a> 
+    </div> 
 
   <!-- Contenedor de figuras animadas -->
   <div class="figuras">

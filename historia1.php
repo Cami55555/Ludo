@@ -43,41 +43,40 @@
     
     <!--titulo-->
        <div class="titulos">
-        <h2 class="titulo-ludo">Historia
-
-        </h2>
+        <h2 class="titulo-ludo">Historia</h2>
       </div>
     <div class="recuadros-reglas">
       
 
       <div class="columna">
           <p>
-           Era un lunes cualquiera en la escuela, pero en la clase de programación algo especial estaba por pasar. El profe entró con una sonrisa y dijo:
+            Cata recordó las tardes en casa de Valen jugando Ludo con amigos, con risas, quejas cuando alguien se quedaba atrapado, y los gritos cuando alguien ganaba.
 
-—“Chicos, para el proyecto final van a elegir qué quieren programar. Puede ser un juego, una app, lo que quieran, pero tienen que trabajar en equipo.”
+—“Me gusta —dijo Cata—. Podemos hacer que el dado tenga animaciones cool, que el tablero sea más dinámico.”
 
-Cata, Lupe, Cami y Valen se miraron. Era la oportunidad que habían estado esperando para hacer algo juntos, pero elegir el proyecto sería todo un desafío.
+Lupe comenzó a imaginar la lógica detrás del juego.
 
-—“¿Y qué se les ocurre?” —preguntó el profe, mientras empezaba a repartir hojas.
+—“Podemos programar que sea justo, que tenga modos para jugar con amigos online, y hasta con inteligencia artificial para cuando no tengas con quién jugar.”
 
-Lupe fue la primera en hablar:
+Cami ya estaba convencida.
+
+—“Y le podemos poner un chat con emojis para picarnos durante la partida,” agregó con una sonrisa.
           </p>
         </div>
         <div class="columna">
-          <div class="img">
+          <div class="imgt">
           <p>
-            —“Podríamos hacer un juego súper complejo, algo con gráficos 3D, inteligencia artificial…”
+            El profe, que había escuchado todo, asintió satisfecho.
 
-—“¿Pero quién va a terminar algo así a tiempo?” —interrumpió Cata con una sonrisa— “Yo digo que algo simple y divertido.”
+—“Ludo es un buen punto de partida. No subestimen la simpleza; a veces, lo simple bien hecho es lo que más engancha.”
 
-Valen, que estaba medio distraído, levantó la mirada y soltó:
+La clase terminó, pero el debate continuó en el recreo. La discusión sobre cómo hacer que el Ludo digital fuera especial se volvió más intensa.
 
-—“¿Y si hacemos un Ludo? Todos lo conocemos y sería divertido programarlo.”
+—“No podemos hacer un tablero aburrido, tiene que tener personalidad,” dijo Cata.
 
-Hubo un silencio incómodo. Cami se rió:
-—“¿Ludo? ¿En serio? Eso es tan básico que no sé si vale la pena.”
+—“¿Y si cada ficha tiene una pequeña animación? Algo que refleje al jugador,” propuso Valen.
 
-—“Pero eso es lo bueno,” dijo Valen con entusiasmo— “Es simple, podemos hacerlo rápido, y si le ponemos cosas nuestras, seguro queda genial.”
+—“¿Qué tal si el dado hace sonidos divertidos? Como un dado real pero más entretenido,” sugirió Lupe.
           </p>
         </div> 
         
@@ -87,12 +86,17 @@ Hubo un silencio incómodo. Cami se rió:
   
     <!-- Fondo animado -->
     <div class="fondo"></div>
-      <div class="imgi">
-      <a href="historia1.php">
-        <img src="imagenes/felchader.png" alt="Descripción de la imagen">
-      </a>
-    </div>
 
+    <div class="imgd"> 
+        <a href="historia.php">
+         <img src="imagenes/flechaizq.png" alt=""> 
+        </a> 
+    </div> 
+    <div class="imgi"> 
+        <a href="historia2.php"> 
+          <img src="imagenes/felchader.png" alt="">
+        </a> 
+    </div>
   <!-- Contenedor de figuras animadas -->
   <div class="figuras">
     <!-- Se repiten varias figuras con diferentes colores -->

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -18,11 +21,26 @@
         <div class="logo-juego">
           <!-- Aquí se agregará el logo del juego más adelante -->
         </div>
-        <ul>
-          <li><a href="index.php">Inicio</a></li>
-          <li><a href="historia.php">Historia</a></li>
-          <li><a href="iniciosesion.html">Iniciar sesion</a></li>
-        </ul>
+<ul>
+        <?php
+        //si ha iniciado sesion
+        if (isset($_SESSION['usuario'])) {
+          echo '
+            <li><a href="jugadores.php">Jugar</a></li>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="historia.php">Historia</a></li>
+            <li><a href="perfil.php">Perfil</a></li>
+          ';
+        } //si no ha iniciado sesion
+        else {
+          echo '
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="historia.php">Historia</a></li>
+            <li><a href="iniciosesion.html">Iniciar sesion</a></li>
+          ';
+        }
+        ?>
+      </ul>
       </nav>
     </header>
     

@@ -94,16 +94,9 @@ body {
 
 .logo {
   display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo img {
-  height: 50px;
-  width: auto;
-  border-radius: 50%;
-  border: 2px solid;
-  animation: cambioBorde 10s linear infinite alternate;
+  height: 20px;
+ width: auto;
+  margin-right:-100%;
 }
 
 .texto-logo h1 {
