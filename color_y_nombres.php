@@ -20,6 +20,8 @@ $cantidadJugadores = isset($_GET['jugadores']) ? intval($_GET['jugadores']) : 2;
 </head>
 <body>
 
+
+
 <!-- Contenedor del formulario -->
 <div class="form-container">
   <h1 class="title">Configurar Jugadores</h1>

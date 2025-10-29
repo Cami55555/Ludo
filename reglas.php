@@ -10,6 +10,17 @@ session_start();
     <title>Reglas</title>
   </head>
   <body>
+
+     <!-- Musica de Fondo -->
+  <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>
+  <script>
+const musica = document.getElementById("musicaFondo");
+musica.volume = 0.4;  
+if (localStorage.getItem("musicaActiva") === "true") {
+  musica.play().catch(() => {});
+}
+</script>
+
     <!-- Menú principal -->
     <header>
       <nav class="menu-principal">
@@ -43,7 +54,7 @@ session_start();
       </ul>
       </nav>
     </header>
-    
+       
     <!--titulo-->
        <div class="titulos">
         <h2 class="titulo-ludo">Reglas</h2>
