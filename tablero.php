@@ -612,67 +612,13 @@
           turnoTexto.innerText = `Ficha seleccionada: ${nombresColores[fichaSeleccionada.jugador]}`;
         }
 
-    const jugador = nombresColores[fichaSeleccionada.jugador]; // rojo, azul, etc.
-   const idx = fichaSeleccionada.indice;
-
-   let posicionActual = posicionesRecorrido[jugador][idx];
-
-   // Si la ficha no está en el tablero, no la movemos
-   if (posicionActual === null || posicionActual === undefined) {
-    turnoTexto.innerText = "Esa ficha aún no está en juego.";
-    return;
-   }
-
-   let nuevaPosicion = posicionActual + numeroDado;
-
-   // Si se pasa del final del recorrido, se queda quieta
-   if (nuevaPosicion >= recorrido.length) {
-    turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
-    fichaSeleccionada = null;
-    return;
-   }
-   // Actualizamos la posición en el array de posiciones
-   posiciones[jugador][idx] = recorrido[nuevaPosicion];
-   // Actualizamos la posición lógica
-   posicionesRecorrido[jugador][idx] = nuevaPosicion;
-   fichaSeleccionada = null;
-   dibujarFichas();
-  }
-
-
-  // --- FUNCIONES DE TURNO Y DADO ---
-  const carasDado = [
-    'imagenes/dado1.png',
-    'imagenes/dado2.png',
-    'imagenes/dado3.png',
-    'imagenes/dado4.png',
-    'imagenes/dado5.png',
-    'imagenes/dado6.png',
-  ];
-  function tirarDado() {
-    if (dadoTirado) return;
-    dadoTirado = true;
-    dado.removeEventListener('click', tirarDado);
-    let contador = 0;
-
-    const animacion = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * 6);
-      dado.src = carasDado[randomIndex];
-      contador++;
-
-      if (contador >= 20) {
-        clearInterval(animacion);
-        numeroDado = randomIndex + 1;
-        console.log("Número del dado:", numeroDado);
-        movimientopieza(numeroDado);
-        dado.addEventListener('click', tirarDado);
-        dadoTirado = false;
+        dibujarFichas();
+      } else {
+        console.log("❌ No se encontró ninguna ficha");
+        fichaSeleccionada = null;
+        dibujarFichas();
       }
-    }, 150);
-  }
-  let accion=false;
-  function movimientopieza(numeroDado) {
-  const colorJugador = nombresColores[turnoActual];
+    }
 
     // =====================
     // LÓGICA DEL JUEGO
