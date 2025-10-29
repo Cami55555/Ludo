@@ -598,6 +598,7 @@
       if (encontrada) {
         // Verificar si es el turno correcto
         if (encontrada.jugador !== turnoActual) {
+
           turnoTexto.innerText = `No es tu turno. Le toca a: ${nombresColores[turnoActual]}`;
           return;
         }
@@ -641,23 +642,23 @@
 
       let nuevaPosicion = posicionActual + numeroDado;
 
-      for (h = 0; h > 3; h++) {
-        if (nuevaPosicion == posicionesRecorrido[jugador][h]) {
-          nuevaPosicion--;
-          turnoTexto.innerText = "No puedes poner una ficha de tu color sobre otra.";
-          return;
-        }
+      /*for (h = 0; h > 3; h++) {
+         if (nuevaPosicion == posicionesRecorrido[jugador][h]) {
+           nuevaPosicion--;
+           turnoTexto.innerText = "No puedes poner una ficha de tu color sobre otra.";
+           return;
+         }
 
-      }
+       }
 
 
-      // Verificar si se pasa del final
-      if (nuevaPosicion >= recorrido.length) {
-        turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
-        fichaSeleccionada = null;
-        esperandoMovimiento = false;
-        return;
-      }
+       // Verificar si se pasa del final
+       /*if (nuevaPosicion >= recorrido.length) {
+         turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
+         fichaSeleccionada = null;
+         esperandoMovimiento = false;
+         return;
+       }*/
 
       // Mover la ficha
       posiciones[jugador][idx] = recorrido[nuevaPosicion];
@@ -674,6 +675,7 @@
         setTimeout(pasarTurno, 1000);
       } else {
         turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
+
         salio6 = false;
       }
     }
@@ -720,6 +722,7 @@
         salio6 = true;
         turnoTexto.innerText = `🎉 ${colorJugador} sacó 6 — puedes mover una ficha o sacar una nueva.`;
         document.getElementById('opciones-jugador').style.display = 'block';
+
         return;
       }
 
@@ -733,19 +736,19 @@
       if (!tieneEnTablero) {
         turnoTexto.innerText = `${colorJugador} no tiene fichas en el tablero. Turno perdido.`;
         setTimeout(pasarTurno, 2000);
-        dado.addEventListener('click', tirarDado);
+
         return;
       }
 
       // Esperar que elija una ficha
       turnoTexto.innerText = `${colorJugador}, elige una ficha para mover ${numero} casillas.`;
       esperandoMovimiento = true;
-      dado.addEventListener('click', tirarDado);
     }
 
     function sacarFicha() {
       if (gfichas[turnoActual] <= -1) {
         turnoTexto.innerText = "No tienes fichas para sacar.";
+
         return;
       }
 
@@ -776,6 +779,7 @@
 
     function mostrarTurno() {
       const jugador = nombresColores[turnoActual];
+      dado.addEventListener('click', tirarDado);
       turnoTexto.innerText = `Le toca a: ${jugador}`;
       console.log("🎮 Turno actual:", jugador);
     }
