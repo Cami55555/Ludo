@@ -1,69 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="iniciarsesion.css" />
-  <title>Inicia Sesión</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="iniciarsesion.css" />
+    <title>Inicia Sesión</title>
+  </head>
+  <body>
+    <div class="fondo"></div>
 
-  <div class="fondo"></div>
+    <div class="figuras">
+      <span class="figura rojo"></span>
+      <span class="figura azul"></span>
+      <span class="figura verde"></span>
+      <span class="figura amarillo"></span>
+      <span class="figura rojo"></span>
+      <span class="figura azul"></span>
+      <span class="figura verde"></span>
+      <span class="figura amarillo"></span>
+      <span class="figura rojo"></span>
+      <span class="figura azul"></span>
+    </div>
 
-  <div class="figuras">
-    <span class="figura rojo"></span>
-    <span class="figura azul"></span>
-    <span class="figura verde"></span>
-    <span class="figura amarillo"></span>
-    <span class="figura rojo"></span>
-    <span class="figura azul"></span>
-    <span class="figura verde"></span>
-    <span class="figura amarillo"></span>
-    <span class="figura rojo"></span>
-    <span class="figura azul"></span>
-  </div>
-
-  <header class="main-header">
-    <div class="logo">
-           <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
-         </div>
-
-    <nav class="nav-bar">
-      <a href="index.php">Inicio</a>
-      <a href="registrarse.html">Registrarse</a>
-      <a href="reglas.php">Reglas</a>
-    </nav>
-  </header>
-
-  <div class="form-container">
-    <p class="title titulo-borde">Inicia Sesión</p>
-
-    <form class="form" action="login.php" method="post">
-      <div class="input-group">
-        <label for="usuario">Usuario:</label>
-        <input type="text" name="usuario" id="usuario" required />
-      </div>
-      <div class="input-group">
-        <label for="mail">Correo electrónico:</label>
-        <input type="email" name="mail" id="mail" required />
-      </div>
-      <div class="input-group">
-        <label for="clave">Contraseña:</label>
-        <input type="password" name="clave" id="clave" required />
-      </div>
-      <div class="input-group">
-        <label for="clave2">Confirmar Contraseña:</label>
-        <input type="password" name="clave2" id="clave2" required />
+    <header class="main-header">
+      <div class="logo">
+        <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
       </div>
 
-      <button type="submit" class="sign">Iniciar sesión</button>
+      <nav class="nav-bar">
+        <a href="index.php">Inicio</a>
+        <a href="registrarse.html">Registrarse</a>
+        <a href="reglas.php">Reglas</a>
+      </nav>
+    </header>
 
-          <p class="no-cuenta">
-             Todavía no tienes una cuenta? 
-            <a href="registrarse.html" class="animado">Regístrate aquí</a>
-          </p>
-    </form>
-  </div>
+    <div class="form-container">
+      <p class="title titulo-borde">Inicia Sesión</p>
 
-</body>
+      <form class="form" action="login.php" method="post" id="formLogin">
+        <div class="input-group">
+          <label for="usuario">Usuario:</label>
+          <input type="text" name="usuario" id="usuario" required />
+        </div>
+        <div class="input-group">
+          <label for="mail">Correo electrónico:</label>
+          <input type="email" name="mail" id="mail" required />
+        </div>
+        <div class="input-group">
+          <label for="clave">Contraseña:</label>
+          <input type="password" name="clave" id="clave" required />
+        </div>
+        <div class="input-group">
+          <label for="clave2">Confirmar Contraseña:</label>
+          <input type="password" name="clave2" id="clave2" required />
+        </div>
+
+        <button type="submit" class="sign">Iniciar sesión</button>
+
+        <p class="no-cuenta">
+          ¿Todavía no tienes una cuenta?
+          <a href="registrarse.html" class="animado">Regístrate aquí</a>
+        </p>
+      </form>
+    </div>
+
+    <!-- 🎵 AUDIO DE FONDO -->
+    <audio
+      id="musicaFondo"
+      src="Sonidos/Garota-de-Ipanema-_イパネマの娘_.wav"
+      loop
+    ></audio>
+
+    <script>
+      const musica = document.getElementById("musicaFondo");
+      musica.volume = 0.4; // volumen moderado
+
+      // Si la música ya estaba activa (por ejemplo, al volver desde otra página)
+      if (localStorage.getItem("musicaActiva") === "true") {
+        musica.play().catch(() => {});
+      }
+
+      // Cuando el usuario envía el formulario (hace clic en Iniciar sesión)
+      const form = document.getElementById("formLogin");
+      form.addEventListener("submit", () => {
+        localStorage.setItem("musicaActiva", "true"); // activa música globalmente
+        musica.play(); // inicia la reproducción
+      });
+    </script>
+  </body>
 </html>
