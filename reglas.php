@@ -50,7 +50,7 @@ session_start();
       </div>
     <div class="recuadros-reglas">
       
-
+      
       <div class="columna">
           <p>
             <h1>Preparación:</h1>

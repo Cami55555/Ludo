@@ -10,8 +10,19 @@ session_start();
   <title>Ludo-Patia</title>
 </head>
 <body>
+
   <!-- Fondo animado -->
   <div class="fondo"></div>
+  <!-- Musica de Fondo -->
+  <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>
+
+<script>
+const musica = document.getElementById("musicaFondo");
+musica.volume = 0.4;  
+if (localStorage.getItem("musicaActiva") === "true") {
+  musica.play().catch(() => {});
+}
+</script>
 
   <!-- Menú principal -->
   <header>

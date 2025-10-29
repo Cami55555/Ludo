@@ -318,7 +318,7 @@ function dibujarFichas() {
       dado.src = carasDado[randomIndex];
       contador++;
 
-      if (contador >= 10) {
+      if (contador >= 20) {
         clearInterval(animacion);
         numeroDado = randomIndex + 1;
         console.log("Número del dado:", numeroDado);
@@ -326,7 +326,7 @@ function dibujarFichas() {
         dado.addEventListener('click', tirarDado);
         dadoTirado = false;
       }
-    }, 100);
+    }, 150);
   }
   let accion=false;
   function movimientopieza(numeroDado) {
