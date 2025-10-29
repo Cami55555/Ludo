@@ -641,6 +641,16 @@
 
       let nuevaPosicion = posicionActual + numeroDado;
 
+      for (h = 0; h > 3; h++) {
+        if (nuevaPosicion == posicionesRecorrido[jugador][h]) {
+          nuevaPosicion--;
+          turnoTexto.innerText = "No puedes poner una ficha de tu color sobre otra.";
+          return;
+        }
+
+      }
+
+
       // Verificar si se pasa del final
       if (nuevaPosicion >= recorrido.length) {
         turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
@@ -686,7 +696,7 @@
       console.log("🎲 Tirando dado...");
       dadoTirado = true;
       esperandoMovimiento = false;
-
+      dado.removeEventListener('click', tirarDado);
       let contador = 0;
       const animacion = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * 6);
@@ -723,16 +733,18 @@
       if (!tieneEnTablero) {
         turnoTexto.innerText = `${colorJugador} no tiene fichas en el tablero. Turno perdido.`;
         setTimeout(pasarTurno, 2000);
+        dado.addEventListener('click', tirarDado);
         return;
       }
 
       // Esperar que elija una ficha
       turnoTexto.innerText = `${colorJugador}, elige una ficha para mover ${numero} casillas.`;
       esperandoMovimiento = true;
+      dado.addEventListener('click', tirarDado);
     }
 
     function sacarFicha() {
-      if (gfichas[turnoActual] <= 0) {
+      if (gfichas[turnoActual] <= -1) {
         turnoTexto.innerText = "No tienes fichas para sacar.";
         return;
       }
@@ -750,6 +762,7 @@
 
       document.getElementById('opciones-jugador').style.display = 'none';
       turnoTexto.innerText = `${colorUsando} sacó una ficha. Puede tirar de nuevo.`;
+      dado.addEventListener('click', tirarDado);
 
       dibujarFichas();
       salio6 = false; // Reset para el próximo turno
