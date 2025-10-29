@@ -9,9 +9,8 @@ if (file_exists($usuarios)) { // Revisa que exista ese archivo
 }
 
 // Se guardan los datos ingresados en variables
-$mail = $_POST['mail'];
+$usuario = $_POST['usuario'];
 $clave = $_POST['clave'];
-$rep_clave = $_POST['clave2'];
 
 $aux = 0;
 
@@ -19,7 +18,7 @@ $aux = 0;
 foreach ($users as $k => $u) {
 
     // Verifica que coincidan mail, clave y repetición de clave
-    if ($users[$k]['mail'] === $mail && $users[$k]['clave'] === $clave && $clave === $rep_clave) {
+    if (($users[$k]['mail'] === $usuario || $users[$k]['usuario'] === $usuario) && $users[$k]['clave'] === $clave) {
         
 
         $_SESSION['nombre'] = $users[$k]['nombre'];
