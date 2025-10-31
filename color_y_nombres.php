@@ -27,7 +27,7 @@ $cantidadJugadores = isset($_GET['jugadores']) ? intval($_GET['jugadores']) : 2;
   <h1 class="title">Configurar Jugadores</h1>
 
   <!-- Formulario que enviará los datos al tablero -->
-  <form action="papitas.php" method="POST" id="form-jugadores">
+  <form action="tablero.php?jugadores=<?= $cantidadJugadores ?>" method="POST" id="form-jugadores">
     <!-- Guarda la cantidad de jugadores de manera oculta -->
     <input type="hidden" name="cantidadJugadores" value="<?= $cantidadJugadores ?>">
 

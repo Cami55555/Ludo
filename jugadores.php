@@ -18,6 +18,16 @@ require 'verificarSesion.php';
 <!-- Fondo borroso detrás de todo -->
 <div class="fondo"></div>
 
+  <!-- Musica de Fondo -->
+  <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>
+  <script>
+const musica = document.getElementById("musicaFondo");
+musica.volume = 0.4;  
+if (localStorage.getItem("musicaActiva") === "true") {
+  musica.play().catch(() => {});
+}
+</script>
+
 <!-- Figuras animadas cayendo -->
 <div class="figuras">
   <span class="figura rojo"></span>

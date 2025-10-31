@@ -179,7 +179,7 @@ body {
 }
 
 .boton-opcion:hover {
-  border-color: #00ffff; /* resalta al pasar mouse */
+  border-color: #000000; /* resalta al pasar mouse */
 }
 
 .boton-opcion.seleccionado {
@@ -193,7 +193,7 @@ body {
 /* BOTÓN JUGAR */
 .boton-jugar {
   width: 100%;
-  background-color: #ffc857;
+  background-color: #000000;
   color: #000;
   border-radius: 10px;
   padding: 12px 0;

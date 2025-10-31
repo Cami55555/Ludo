@@ -70,5 +70,14 @@
         "clave": "oreo",
         "edad": "14",
         "wins": 0
+    },
+    {
+        "nombre": "tres",
+        "apellido": "cuatro",
+        "usuario": "tress",
+        "mail": "tres@gmail.com",
+        "clave": "123456789",
+        "edad": "16",
+        "wins": 0
     }
 ]

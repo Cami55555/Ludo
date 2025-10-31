@@ -1,3 +1,25 @@
+<?php
+session_start();
+
+// Si viene información del formulario:
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $nombres = $_POST['nombre'] ?? [];
+  $colores = $_POST['color'] ?? [];
+  $cantidadJugadores = $_POST['cantidadJugadores'] ?? 0;
+
+  // Guardamos en sesión para que el JS o el juego puedan usarlos
+  $_SESSION['jugadores'] = [];
+  for ($i = 0; $i < $cantidadJugadores; $i++) {
+    $_SESSION['jugadores'][] = [
+      'nombre' => $nombres[$i],
+      'color' => $colores[$i]
+    ];
+  }
+}
+
+// Recuperamos si ya está guardado
+$jugadores = $_SESSION['jugadores'] ?? [];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -152,6 +174,17 @@
   </style>
 </head>
 
+ <!-- Musica de Fondo -->
+  <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>
+  <script>
+const musica = document.getElementById("musicaFondo");
+musica.volume = 0.2;  
+if (localStorage.getItem("musicaActiva") === "true") {
+  musica.play().catch(() => {});
+}
+</script> 
+
+<audio id="sonido-dado" src="Sonidos/dado.wav"></audio>
 <body>
   <!-- ENCABEZADO Y MENÚ -->
   <header>
@@ -196,15 +229,15 @@
     // =====================
     // VARIABLES GLOBALES
     // =====================
-    const colores = ['red', 'blue', 'green', 'yellow'];
-    const nombresColores = ['rojo', 'azul', 'verde', 'amarillo'];
+    const colores = ['red', 'green', 'yellow', 'blue'];
+    const nombresColores = ['rojo', 'verde', 'amarillo', 'azul'];
 
     const canvas = document.getElementById('canvas-ludo');
     const ctx = canvas.getContext('2d');
     const tablero = document.querySelector('.imagen-tablero');
     const dado = document.getElementById('dado');
     const turnoTexto = document.getElementById('turno');
-
+    const jugadores = <?= json_encode($jugadores) ?>;
     // Estado del juego
     let salio6 = false;
     let dadoTirado = false;
@@ -692,28 +725,39 @@
       'imagenes/dado6.png',
     ];
 
-    function tirarDado() {
-      if (dadoTirado) return;
+   function tirarDado() {
+  if (dadoTirado) return;
 
-      console.log("🎲 Tirando dado...");
-      dadoTirado = true;
-      esperandoMovimiento = false;
-      dado.removeEventListener('click', tirarDado);
-      let contador = 0;
-      const animacion = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * 6);
-        dado.src = carasDado[randomIndex];
-        contador++;
+  console.log("🎲 Tirando dado...");
+  dadoTirado = true;
+  esperandoMovimiento = false;
+  dado.removeEventListener('click', tirarDado);
 
-        if (contador >= 10) {
-          clearInterval(animacion);
-          numeroDado = randomIndex + 1;
-          console.log("🎲 Resultado del dado:", numeroDado);
-          procesarTirada(numeroDado);
-          dadoTirado = false;
-        }
-      }, 100);
+  const sonidoDado = document.getElementById("sonido-dado"); 
+
+  let contador = 0;
+  const animacion = setInterval(() => {
+    const randomIndex = Math.floor(Math.random() * 6);
+    dado.src = carasDado[randomIndex];
+
+    // Se reproduce el pitido del dado cada vez que cambia de imagen
+    sonidoDado.currentTime = 0;
+    sonidoDado.play();
+
+    contador++;
+
+    if (contador >= 15) {
+      clearInterval(animacion);
+
+      numeroDado = randomIndex + 1;
+      console.log("🎲 Resultado del dado:", numeroDado);
+      procesarTirada(numeroDado);
+      dadoTirado = false;
     }
+  }, 160); 
+}
+
+
 
     function procesarTirada(numero) {
       const colorJugador = nombresColores[turnoActual];
