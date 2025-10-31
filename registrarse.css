@@ -177,7 +177,7 @@ body {
   width: 320px;       /* más pequeño */
   padding: 1rem;      /* menos padding */
   border-radius: 0.75rem;
-  background-color: #1f1f1f;
+  background-color: #1f1c33;
   color: #f5f5f5;
   box-shadow: 0 5px 9px 2px #a8e6cf;
   animation: cambioBox 10s linear infinite alternate;
@@ -192,7 +192,7 @@ body {
   letter-spacing: 0.5px;
   font-stretch: condensed;
   animation: cambioLetra 10s linear infinite alternate;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+  
   color: transparent;
 }
 
@@ -211,7 +211,7 @@ body {
   border-radius: 0.375rem;
   box-shadow: 0px 1px 2.5px #a8e6cf;
   outline: 0;
-  background-color: #1f1f1f;
+  background-color: #0d0a43;
   border: 1px solid #a8e6cf;
   padding: 0.5rem 0.8rem;
   color: #ffffff;
@@ -220,7 +220,7 @@ body {
 
 .input-group input:focus {
   box-shadow: 0px 2px 5px #a8e6cf;
-  border-color: #1f1f1f;
+  border-color: #1f1c33;
 }
 
 .sign {
@@ -230,7 +230,7 @@ body {
   border-radius: 0.375rem;
   box-shadow: 0px 1px 2.5px #a8e6cf;
   outline: 0;
-  background-color: #1f1f1f;
+  background-color: #121b47;
   border: 1px solid #a8e6cf;
   padding: 0.5rem 0.8rem;
   color: #ffffff;
@@ -240,5 +240,5 @@ body {
 }
 
 .sign:hover {
-  background-color: #181616;
+  background-color: #2b345d;
 }
