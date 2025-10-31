@@ -11,7 +11,7 @@ session_start();
   </head>
   <body>
 
-     <!-- Musica de Fondo -->
+     <!-- Musica de Fondoo -->
   <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>
   <script>
 const musica = document.getElementById("musicaFondo");

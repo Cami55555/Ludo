@@ -263,7 +263,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
     };
 
     // =====================
-    // POSICIONES Y RECORRIDO
+    // POSICIONES Y RECORRIDOo
     // =====================
     const recorrido = [{
         x: 0.4545,

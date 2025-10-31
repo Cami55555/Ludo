@@ -11,7 +11,7 @@ session_start();
 </head>
 <body>
 
-  <!-- Fondo animado -->
+  <!-- Fondo animadoo -->
   <div class="fondo"></div>
   <!-- Musica de Fondo -->
   <audio id="musicaFondo" src="Sonidos/Her-Hair-Was-Golden.wav" loop></audio>

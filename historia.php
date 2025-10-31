@@ -27,7 +27,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
 
         </div>
         <div class="logo-juego">
-          <!-- Aquí se agregará el logo del juego más adelante -->
+          <!-- Aquí se agregará el logo del juego más adelantee -->
         </div>
 <ul>
         <?php

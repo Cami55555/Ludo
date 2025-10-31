@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-// Inicia sesión para saber quién está conectado
+// Inicia sesión para saber quién está conectadoo
 
 require 'verificarSesion.php'; 
 // Verifica que la sesión esté activa
