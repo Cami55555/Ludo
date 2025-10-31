@@ -199,7 +199,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
   </header>
 
   <div class="controles">
-    
+      
     <div id="turno"></div>
   </div>
 
@@ -588,7 +588,12 @@ const rectaFinal = {
         y: 0.31
       }]
     };
-
+   const entradaCasa = {
+   rojo: 53,
+   verde: 11,
+   amarillo: 24,
+   azul: 37
+   };
     // =====================
     // FUNCIONES DE CANVAS
     // =====================
@@ -697,70 +702,61 @@ const rectaFinal = {
     // =====================
     // LÓGICA DEL JUEGO
     // =====================
-    function moverFichaSeleccionada() {
-  if (!fichaSeleccionada) {
-    turnoTexto.innerText = "Primero selecciona una ficha.";
-    return;
-  }
-
-  const jugador = nombresColores[fichaSeleccionada.jugador];
-  const idx = fichaSeleccionada.indice;
-  let posicionActual = posicionesRecorrido[jugador][idx];
-
-  // Si la ficha no está en el tablero
-  if (posicionActual === null || posicionActual === undefined) {
-    turnoTexto.innerText = "Esa ficha aún no está en juego.";
-    return;
-  }
-
-  let nuevaPosicion = posicionActual + numeroDado;
-
-  // 🚩 Si la ficha llega o pasa la entrada a casa, empieza a avanzar en la recta final
-  if (posicionActual >= entradaCasa[jugador]) {
-    let avanceFinal = (posicionActual - entradaCasa[jugador]) + numeroDado;
-
-    // Si llega al final de la recta
-    if (avanceFinal >= rectaFinal[jugador].length) {
-      turnoTexto.innerText = `🎉 ${jugador} ha metido una ficha en su casa!`;
-      posiciones[jugador][idx] = { x: 0.5, y: 0.5 }; // centro del tablero
-      posicionesRecorrido[jugador][idx] = null;
-      fichasacada[jugador][idx] = false; // ya completó su recorrido
-      dibujarFichas();
-
-      // Verificar si ganó (todas sus fichas están en casa)
-      if (fichasacada[jugador].every(f => f === false)) {
-        turnoTexto.innerText = `🏆 ¡${jugador.toUpperCase()} ganó la partida!`;
-        win = true;
+      function moverFichaSeleccionada() {
+      if (!fichaSeleccionada) {
+        turnoTexto.innerText = "Primero selecciona una ficha.";
         return;
       }
 
-      if (!salio6) setTimeout(pasarTurno, 1500);
-      return;
-    } else {
-      // Sigue avanzando por su camino final
-      posiciones[jugador][idx] = rectaFinal[jugador][avanceFinal];
-      posicionesRecorrido[jugador][idx] = entradaCasa[jugador] + avanceFinal;
+      const jugador = nombresColores[fichaSeleccionada.jugador];
+      const idx = fichaSeleccionada.indice;
+      let posicionActual = posicionesRecorrido[jugador][idx];
+
+      // Si la ficha no está en el tablero
+      if (posicionActual === null || posicionActual === undefined) {
+        turnoTexto.innerText = "Esa ficha aún no está en juego.";
+        return;
+      }
+
+      let nuevaPosicion = posicionActual + numeroDado;
+
+      /*for (h = 0; h > 3; h++) {
+         if (nuevaPosicion == posicionesRecorrido[jugador][h]) {
+           nuevaPosicion--;
+           turnoTexto.innerText = "No puedes poner una ficha de tu color sobre otra.";
+           return;
+         }
+
+       }
+
+
+       // Verificar si se pasa del final
+       /*if (nuevaPosicion >= recorrido.length) {
+         turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
+         fichaSeleccionada = null;
+         esperandoMovimiento = false;
+         return;
+       }*/
+
+      // Mover la ficha
+      posiciones[jugador][idx] = recorrido[nuevaPosicion];
+      posicionesRecorrido[jugador][idx] = nuevaPosicion;
+
+      turnoTexto.innerText = `${jugador} movió ${numeroDado} casillas`;
+
+      fichaSeleccionada = null;
+      esperandoMovimiento = false;
+      dibujarFichas();
+
+      // Pasar turno si no salió 6
+      if (!salio6) {
+        setTimeout(pasarTurno, 1000);
+      } else {
+        turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
+
+        salio6 = false;
+      }
     }
-  } else {
-    // 🚶 Movimiento normal por el recorrido general
-    if (nuevaPosicion >= recorrido.length) {
-      nuevaPosicion = nuevaPosicion - recorrido.length; // da la vuelta
-    }
-
-    posiciones[jugador][idx] = recorrido[nuevaPosicion];
-    posicionesRecorrido[jugador][idx] = nuevaPosicion;
-  }
-
-  turnoTexto.innerText = `${jugador} movió ${numeroDado} casillas`;
-  fichaSeleccionada = null;
-  esperandoMovimiento = false;
-  dibujarFichas();
-
-  if (!salio6) setTimeout(pasarTurno, 1000);
-  else turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
-
-  salio6 = false;
-}
 
 
     // =====================
@@ -849,7 +845,7 @@ const rectaFinal = {
       const colorUsando = nombresColores[turnoActual];
       const entrada = entradaJugadores[colorUsando];
       const indiceFicha = gfichas[turnoActual] - 1;
-      fichasacada[nombresColores][indiceFicha]=true;
+      fichasacada[colorUsando][indiceFicha]=true;
       // Mover ficha del garage al tablero
       posiciones[colorUsando][indiceFicha] = recorrido[entrada];
       posicionesRecorrido[colorUsando][indiceFicha] = entrada;
@@ -869,6 +865,7 @@ const rectaFinal = {
       document.getElementById('opciones-jugador').style.display = 'none';
       turnoTexto.innerText = `${nombresColores[turnoActual]}, elige una ficha para mover ${numeroDado} casillas.`;
       esperandoMovimiento = true;
+      dado.addEventListener('click', tirarDado);
     }
 
     function mostrarTurno() {
