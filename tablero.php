@@ -199,7 +199,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
   </header>
 
   <div class="controles">
-    <button onclick="pasarTurno()">Pasar Turno</button>
+    
     <div id="turno"></div>
   </div>
 
@@ -487,12 +487,51 @@ if (localStorage.getItem("musicaActiva") === "true") {
         y: 0.724
       }, // Casilla 54
     ];
-
+const rectaFinal = {
+  rojo: [
+    { x: 0.510, y: 0.836 },
+    { x: 0.510, y: 0.78 },
+    { x: 0.510, y: 0.724 },
+    { x: 0.510, y: 0.668 },
+    { x: 0.510, y: 0.612 },
+    { x: 0.510, y: 0.556 }
+  ],
+  verde: [
+    { x: 0.163, y: 0.452 },
+    { x: 0.22, y: 0.452 },
+    { x: 0.279, y: 0.452 },
+    { x: 0.338, y: 0.452 },
+    { x: 0.398, y: 0.452 },
+    { x: 0.4545, y: 0.452 }
+  ],
+  amarillo: [
+    { x: 0.575, y: 0.182 },
+    { x: 0.575, y: 0.235 },
+    { x: 0.575, y: 0.289 },
+    { x: 0.575, y: 0.346 },
+    { x: 0.575, y: 0.398 },
+    { x: 0.575, y: 0.452 }
+  ],
+  azul: [
+    { x: 0.808, y: 0.564 },
+    { x: 0.750, y: 0.564 },
+    { x: 0.692, y: 0.564 },
+    { x: 0.632, y: 0.564 },
+    { x: 0.575, y: 0.564 },
+    { x: 0.514, y: 0.564 }
+  ]
+};
     let posicionesRecorrido = {
       rojo: [null, null, null, null],
       azul: [null, null, null, null],
       verde: [null, null, null, null],
       amarillo: [null, null, null, null]
+    };
+      let fichasacada = {
+      rojo: [false, false, false, false],
+      azul: [false, false, false, false],
+      verde: [false, false, false, false],
+      amarillo: [false, false, false, false]
     };
 
     let posiciones = {
@@ -659,60 +698,70 @@ if (localStorage.getItem("musicaActiva") === "true") {
     // LÓGICA DEL JUEGO
     // =====================
     function moverFichaSeleccionada() {
-      if (!fichaSeleccionada) {
-        turnoTexto.innerText = "Primero selecciona una ficha.";
-        return;
-      }
+  if (!fichaSeleccionada) {
+    turnoTexto.innerText = "Primero selecciona una ficha.";
+    return;
+  }
 
-      const jugador = nombresColores[fichaSeleccionada.jugador];
-      const idx = fichaSeleccionada.indice;
-      let posicionActual = posicionesRecorrido[jugador][idx];
+  const jugador = nombresColores[fichaSeleccionada.jugador];
+  const idx = fichaSeleccionada.indice;
+  let posicionActual = posicionesRecorrido[jugador][idx];
 
-      // Si la ficha no está en el tablero
-      if (posicionActual === null || posicionActual === undefined) {
-        turnoTexto.innerText = "Esa ficha aún no está en juego.";
-        return;
-      }
+  // Si la ficha no está en el tablero
+  if (posicionActual === null || posicionActual === undefined) {
+    turnoTexto.innerText = "Esa ficha aún no está en juego.";
+    return;
+  }
 
-      let nuevaPosicion = posicionActual + numeroDado;
+  let nuevaPosicion = posicionActual + numeroDado;
 
-      /*for (h = 0; h > 3; h++) {
-         if (nuevaPosicion == posicionesRecorrido[jugador][h]) {
-           nuevaPosicion--;
-           turnoTexto.innerText = "No puedes poner una ficha de tu color sobre otra.";
-           return;
-         }
+  // 🚩 Si la ficha llega o pasa la entrada a casa, empieza a avanzar en la recta final
+  if (posicionActual >= entradaCasa[jugador]) {
+    let avanceFinal = (posicionActual - entradaCasa[jugador]) + numeroDado;
 
-       }
-
-
-       // Verificar si se pasa del final
-       /*if (nuevaPosicion >= recorrido.length) {
-         turnoTexto.innerText = "No puedes avanzar, necesitas el número exacto.";
-         fichaSeleccionada = null;
-         esperandoMovimiento = false;
-         return;
-       }*/
-
-      // Mover la ficha
-      posiciones[jugador][idx] = recorrido[nuevaPosicion];
-      posicionesRecorrido[jugador][idx] = nuevaPosicion;
-
-      turnoTexto.innerText = `${jugador} movió ${numeroDado} casillas`;
-
-      fichaSeleccionada = null;
-      esperandoMovimiento = false;
+    // Si llega al final de la recta
+    if (avanceFinal >= rectaFinal[jugador].length) {
+      turnoTexto.innerText = `🎉 ${jugador} ha metido una ficha en su casa!`;
+      posiciones[jugador][idx] = { x: 0.5, y: 0.5 }; // centro del tablero
+      posicionesRecorrido[jugador][idx] = null;
+      fichasacada[jugador][idx] = false; // ya completó su recorrido
       dibujarFichas();
 
-      // Pasar turno si no salió 6
-      if (!salio6) {
-        setTimeout(pasarTurno, 1000);
-      } else {
-        turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
-
-        salio6 = false;
+      // Verificar si ganó (todas sus fichas están en casa)
+      if (fichasacada[jugador].every(f => f === false)) {
+        turnoTexto.innerText = `🏆 ¡${jugador.toUpperCase()} ganó la partida!`;
+        win = true;
+        return;
       }
+
+      if (!salio6) setTimeout(pasarTurno, 1500);
+      return;
+    } else {
+      // Sigue avanzando por su camino final
+      posiciones[jugador][idx] = rectaFinal[jugador][avanceFinal];
+      posicionesRecorrido[jugador][idx] = entradaCasa[jugador] + avanceFinal;
     }
+  } else {
+    // 🚶 Movimiento normal por el recorrido general
+    if (nuevaPosicion >= recorrido.length) {
+      nuevaPosicion = nuevaPosicion - recorrido.length; // da la vuelta
+    }
+
+    posiciones[jugador][idx] = recorrido[nuevaPosicion];
+    posicionesRecorrido[jugador][idx] = nuevaPosicion;
+  }
+
+  turnoTexto.innerText = `${jugador} movió ${numeroDado} casillas`;
+  fichaSeleccionada = null;
+  esperandoMovimiento = false;
+  dibujarFichas();
+
+  if (!salio6) setTimeout(pasarTurno, 1000);
+  else turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
+
+  salio6 = false;
+}
+
 
     // =====================
     // FUNCIONES DEL DADO
@@ -800,7 +849,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
       const colorUsando = nombresColores[turnoActual];
       const entrada = entradaJugadores[colorUsando];
       const indiceFicha = gfichas[turnoActual] - 1;
-
+      fichasacada[nombresColores][indiceFicha]=true;
       // Mover ficha del garage al tablero
       posiciones[colorUsando][indiceFicha] = recorrido[entrada];
       posicionesRecorrido[colorUsando][indiceFicha] = entrada;
