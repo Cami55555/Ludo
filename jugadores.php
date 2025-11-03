@@ -90,7 +90,7 @@ function iniciarJuego() {
     return;
   }
   // Redirige a la página de nombres y colores, pasando la cantidad de jugadores
-  window.location.href = `tablero.php?jugadores=${seleccion.value}`;
+  window.location.href = `color_y_nombres.php?jugadores=${seleccion.value}`;
 }
 
 // Añade un efecto visual al seleccionar una opción
