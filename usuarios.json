@@ -14,7 +14,7 @@
         "usuario": "pedro",
         "mail": "messi@gmail.com",
         "clave": "2233",
-        "edad": "2025-10-14",
+        "edad": 66,
         "wins": 0
     },
     {
@@ -23,7 +23,7 @@
         "usuario": "monja",
         "mail": "manija@latas",
         "clave": "dsc5v4fs6rf4",
-        "edad": "2026-03-25",
+        "edad": 21,
         "wins": 0
     },
     {
@@ -32,7 +32,7 @@
         "usuario": "lupe_123",
         "mail": "est.minich.guadalupe@latecnicalf.com.ar",
         "clave": "lupexd",
-        "edad": "2009-05-25",
+        "edad": 201,
         "wins": 0
     },
     {
@@ -41,7 +41,7 @@
         "usuario": "c",
         "mail": "defghijk@lmn",
         "clave": "\u00f1opqrstuvwxyz",
-        "edad": "50416",
+        "edad": 2,
         "wins": 0
     },
     {
@@ -50,7 +50,7 @@
         "usuario": "uma",
         "mail": "uma@gmial.com",
         "clave": "uma01",
-        "edad": "18",
+        "edad": 18,
         "wins": 0
     },
     {
