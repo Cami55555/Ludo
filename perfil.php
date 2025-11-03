@@ -22,7 +22,7 @@ $usuario = $_SESSION["usuario"];
     <!-- HEADER -->
     <header class="main-header">
       <div class="logo">
-        <a href="/index.php"><img src="/imagenes/logo.png" alt="Home" /></a>
+        <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
         <div class="texto-logo">
 
         </div>
