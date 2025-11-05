@@ -74,4 +74,33 @@ if (localStorage.getItem("musicaActiva") === "true") {
     <span class="figura azul"></span>
   </div>
 </body>
+ <!--Footer hermoso-->
+     <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Redes Sociales</h3><!--Apartado de redes sociales-->
+          <div class="redes-sociales">
+            <p>📸 Instagram: @Ludo-patia</p>
+            <p>📘 Facebook: LudoGame</p>
+            <p>🐦 Twitter: @Ludo-Patia-Game</p>
+          </div>
+        </div>
+   
+        <div class="footer-section"><!--Contacto-->
+          <h3>Contacto</h3>
+          <p>Correo: Ludopatia@gmail.com.ar</p>
+          <p>Teléfono: +54 3548-462010 </p>
+        </div>
+
+        <div class="footer-section"><!--Ubicación-->
+          <h3>Ubicación:</h3>
+          <p>La Falda, Cordoba, San Jorge</p>
+          <p>San Esteban 76</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ludo-Patia. Todos los derechos reservados.</p>
+      </div>
+    </footer>
 </html>

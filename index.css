@@ -4,9 +4,13 @@
 body {
   margin: 0; /* Sin margen por defecto */
   padding: 0; /* Sin padding */
-  font-family: 'Poppins', sans-serif; /* Fuente moderna y legible */
-  background: linear-gradient(135deg, #0a0a0a, #1a1a2e); /* Fondo degradado oscuro */
-  overflow: hidden; /* Evita scroll por animaciones */
+  font-family: "Poppins", sans-serif; /* Fuente moderna y legible */
+  background: linear-gradient(
+    135deg,
+    #0a0a0a,
+    #1a1a2e
+  ); /* Fondo degradado oscuro */
+
   position: relative;
   color: white; /* Color de texto por defecto */
 }
@@ -27,13 +31,17 @@ body {
 
 /* Efecto de luz difusa */
 .fondo::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.05),
+    transparent 70%
+  );
   z-index: 1; /* Entre el fondo y las figuras */
 }
 
@@ -71,7 +79,7 @@ body {
   font-size: 18px;
   transition: 0.3s; /* Animación suave al pasar el mouse */
   z-index: 10;
-   white-space: nowrap; /* Evita que "Iniciar sesión" se divida en dos líneas */
+  white-space: nowrap; /* Evita que "Iniciar sesión" se divida en dos líneas */
 }
 
 .menu-principal li a:hover {
@@ -85,7 +93,6 @@ body {
   width: auto;
   margin-left: -70%;
 }
-
 
 /* ----------------------
    TÍTULOS
@@ -109,7 +116,17 @@ body {
 .titulo-ludo {
   font-size: 72px;
   font-weight: 900;
-  background: linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow); /* Gradiente con los colores de las fichas */
+  background: linear-gradient(
+    90deg,
+    red,
+    blue,
+    green,
+    yellow,
+    red,
+    blue,
+    green,
+    yellow
+  ); /* Gradiente con los colores de las fichas */
   background-size: 400% 100%; /* Permite animación horizontal */
   -webkit-background-clip: text; /* Aplica gradiente solo al texto */
   -webkit-text-fill-color: transparent; /* Texto transparente para mostrar gradiente */
@@ -121,7 +138,7 @@ body {
 
 /* Borde blanco alrededor del texto */
 .titulo-ludo::after {
-  content: 'LUDO-PATIA';
+  content: "LUDO-PATIA";
   position: absolute;
   top: 0;
   left: 0;
@@ -134,8 +151,12 @@ body {
 
 /* Animación del gradiente horizontal */
 @keyframes animar-gradiente {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 0%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
 /* ----------------------
@@ -163,10 +184,21 @@ body {
 }
 
 /* Colores más saturados y formas */
-.rojo { background: #ff0000; } /* Cuadrado rojo */
-.azul { background: #0066ff; border-radius: 50%; } /* Círculo azul */
-.verde { background: #00cc00; border-radius: 0%; } /* Cuadrado verde */
-.amarillo { background: #ffff33; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); } /* Triángulo amarillo */
+.rojo {
+  background: #ff0000;
+} /* Cuadrado rojo */
+.azul {
+  background: #0066ff;
+  border-radius: 50%;
+} /* Círculo azul */
+.verde {
+  background: #00cc00;
+  border-radius: 0%;
+} /* Cuadrado verde */
+.amarillo {
+  background: #ffff33;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+} /* Triángulo amarillo */
 
 /* Animación de caída con rotación */
 @keyframes caer {
@@ -181,13 +213,111 @@ body {
 }
 
 /* Posiciones aleatorias y duraciones diferentes para cada figura */
-.figura:nth-child(1) { left: 5%; animation-duration: 8s; }
-.figura:nth-child(2) { left: 15%; animation-duration: 12s; }
-.figura:nth-child(3) { left: 30%; animation-duration: 9s; }
-.figura:nth-child(4) { left: 45%; animation-duration: 11s; }
-.figura:nth-child(5) { left: 60%; animation-duration: 10s; }
-.figura:nth-child(6) { left: 75%; animation-duration: 14s; }
-.figura:nth-child(7) { left: 85%; animation-duration: 8s; }
-.figura:nth-child(8) { left: 50%; animation-duration: 13s; }
-.figura:nth-child(9) { left: 25%; animation-duration: 9s; }
-.figura:nth-child(10){ left: 90%; animation-duration: 11s; }
+.figura:nth-child(1) {
+  left: 5%;
+  animation-duration: 8s;
+}
+.figura:nth-child(2) {
+  left: 15%;
+  animation-duration: 12s;
+}
+.figura:nth-child(3) {
+  left: 30%;
+  animation-duration: 9s;
+}
+.figura:nth-child(4) {
+  left: 45%;
+  animation-duration: 11s;
+}
+.figura:nth-child(5) {
+  left: 60%;
+  animation-duration: 10s;
+}
+.figura:nth-child(6) {
+  left: 75%;
+  animation-duration: 14s;
+}
+.figura:nth-child(7) {
+  left: 85%;
+  animation-duration: 8s;
+}
+.figura:nth-child(8) {
+  left: 50%;
+  animation-duration: 13s;
+}
+.figura:nth-child(9) {
+  left: 25%;
+  animation-duration: 9s;
+}
+.figura:nth-child(10) {
+  left: 90%;
+  animation-duration: 11s;
+}
+
+/* Estilos basicos del footer */
+/* FOOTER con línea animada */
+.main-footer {
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  font-size: 13px;
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: 350px;
+  border-top: 5px solid transparent; /* Base transparente */
+  background-image: linear-gradient(#1a1a2e, #1a1a2e),
+    linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow); /* Misma animación que el título */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 400% 100%;
+  animation: animar-gradiente 5s linear infinite; /* Reutiliza la animación del título */
+  padding: 40px 20px 5px 20px;
+  box-sizing: border-box;
+  z-index: 20;
+  position: relative;
+}
+
+/* Contenedor de las secciones dentro del footer */
+.footer-content {
+  display: flex; /* Organiza las secciones en fila */
+  gap: 30px; /* Espacio horizontal entre cada sección */
+  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  position: relative;
+}
+
+/* Cada sección individual del footer */
+.footer-section {
+  flex: 1; /* Cada sección ocupa la misma proporción del espacio disponible */
+  display: flex; /* Convierte la sección en contenedor flex */
+  flex-direction: column; /* Los elementos dentro de la sección se apilan verticalmente */
+  align-items: center; /* Centra horizontalmente todos los elementos dentro de la sección */
+  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  position: relative;
+}
+
+/* Estilo de los títulos dentro de cada sección */
+.footer-section h3 {
+  margin: 0 0 10px 0;
+  padding-left: 0;
+  font-size: 20px;
+  animation: cambioLetra 10s linear infinite alternate;
+  text-align: left; /* ahora centrado */
+  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  position: relative;
+}
+
+/* Párrafos dentro de cada sección */
+.footer-section p {
+  margin: 6px 0; /* Espacio vertical entre párrafos */
+  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  position: relative;
+}
+
+/* Pie de página inferior con copyright */
+.footer-bottom {
+  text-align: center; /* Centra el texto horizontalmente */
+  color: #888; /* Color gris medio */
+  font-size: 13px; /* Tamaño de la fuente */
+  margin-top: 50px; /* Espacio superior para separarlo del contenido del footer */
+  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  position: relative;
+}
