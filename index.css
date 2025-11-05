@@ -13,6 +13,9 @@ body {
 
   position: relative;
   color: white; /* Color de texto por defecto */
+  min-height: 100vh; /* cuerpo ocupa toda la altura visible */
+  display: flex;
+  flex-direction: column;
 }
 
 /* ----------------------
@@ -66,7 +69,7 @@ body {
   list-style: none; /* Quita viñetas */
   display: flex; /* Menú horizontal */
   gap: 30px; /* Espacio entre enlaces */
-  margin-left: 130%;
+  margin-left: 210%; /* Mueve los enlaces mas al costado */
   padding: 0;
   z-index: 20;
   margin-top: 0; /* mover para arriba*/
@@ -99,9 +102,11 @@ body {
 ----------------------- */
 .titulos {
   position: relative;
-  z-index: 5; /* Encima del fondo y figuras, debajo del menú */
+  z-index: 5;
   text-align: center;
-  margin-top: 100px; /* Espacio desde el menú */
+  margin-top: 100px;
+  min-height: 230px; /*  Mantiene espacio para el botón aunque no esté */
+  padding-bottom: 210px; /*  Espacio extra entre el botón y el footer */
 }
 
 /* "Bienvenidos a" */
@@ -262,7 +267,7 @@ body {
   font-size: 13px;
   width: 100%;
   flex-shrink: 0;
-  margin-top: 350px;
+  margin-top: auto; /* empuja el footer al fondo */
   border-top: 5px solid transparent; /* Base transparente */
   background-image: linear-gradient(#1a1a2e, #1a1a2e),
     linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow); /* Misma animación que el título */
@@ -320,4 +325,98 @@ body {
   margin-top: 50px; /* Espacio superior para separarlo del contenido del footer */
   z-index: 20; /* Encima del fondo y figuras, debajo del menú */
   position: relative;
+}
+/* ----------------------
+   BOTÓN "JUGAR"
+----------------------- */
+.btn-jugar {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 16px 60px;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+  text-decoration: none;
+  background: #000; /* Fondo negro puro */
+  border: 4px solid transparent;
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  z-index: 15;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Borde animado */
+.btn-jugar::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    red,
+    blue,
+    green,
+    yellow,
+    red,
+    blue,
+    green,
+    yellow
+  );
+  background-size: 400% 100%;
+  animation: animar-gradiente 5s linear infinite;
+  z-index: -1; /* Va detrás del botón */
+  filter: blur(1.5px);
+}
+
+/* Efecto al pasar el mouse */
+.btn-jugar:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+}
+
+/* Asegura que el interior quede negro y no se vea el borde */
+.btn-jugar::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #121b47;
+  border-radius: 12px;
+  z-index: -1;
+}
+/* ----------------------
+   MENSAJE "INICIÁ SESIÓN"
+----------------------- */
+.mensaje-inicio {
+  font-size: 26px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  margin-top: 40px;
+  letter-spacing: 1px;
+  text-align: center;
+  animation: aparecerTexto 1s ease-in-out;
+  z-index: 10;
+  position: relative;
+}
+
+/* Animación suave de entrada */
+@keyframes aparecerTexto {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

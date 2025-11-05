@@ -27,7 +27,8 @@ if (localStorage.getItem("musicaActiva") === "true") {
     <nav class="menu-principal">
       <div class="logo">
         <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
-        <div>
+      <div>
+        
       <div class="logo-juego">
         <!-- <img src="imagenes/logo.png" alt="Logo Ludo-Patia"> -->
       </div>
@@ -36,7 +37,6 @@ if (localStorage.getItem("musicaActiva") === "true") {
         //si ha iniciado sesion
         if (isset($_SESSION['usuario'])) {
           echo '
-            <li><a href="jugadores.php">Jugar</a></li>
             <li><a href="reglas.php">Reglas</a></li>
             <li><a href="historia.php">Historia</a></li>
             <li><a href="perfil.php">Perfil</a></li>
@@ -54,12 +54,22 @@ if (localStorage.getItem("musicaActiva") === "true") {
     </nav>
   </header>
 
-  <!-- Títulos principales -->
   <div class="titulos">
-    <h2 class="bienvenidos">Bienvenidos a</h2>
-    <h1 class="titulo-ludo">LUDO-PATIA</h1>
-  </div>
+  <h1 class="bienvenidos">Bienvenidos a</h1>
+  <h1 class="titulo-ludo">LUDO-PATIA</h1>
 
+  <?php if (isset($_SESSION['usuario'])): ?>
+    <!-- Si el usuario inició sesión -->
+    <a href="jugadores.php" class="btn-jugar">JUGAR</a>
+  <?php else: ?>
+    <!-- Si el usuario NO inició sesión -->
+    <p class="mensaje-inicio">Iniciá sesión para poder jugar y</p>
+    <p class="mensaje-inicio"> descubrir mucho más...</p>
+  <?php endif; ?>
+</div>
+
+
+  
   <!-- Contenedor de figuras animadas -->
   <div class="figuras">
     <span class="figura rojo"></span>

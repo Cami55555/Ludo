@@ -4,7 +4,7 @@
 body {
   margin: 0; /* quita el margen predeterminado del navegador */
   padding: 0; /* quita el padding predeterminado */
-  font-family: 'Poppins', sans-serif; /* fuente de letra */
+  font-family: "Poppins", sans-serif; /* fuente de letra */
   background: linear-gradient(135deg, #0a0a0a, #1a1a2e); /* fondo degradado */
   overflow: hidden; /* evita scroll */
   color: white; /* color de texto general */
@@ -17,8 +17,10 @@ body {
 /* ============================= */
 .fondo {
   position: fixed; /* siempre pegado a la pantalla */
-  top: 0; left: 0; /* inicia desde arriba izquierda */
-  width: 100%; height: 100%; /* ocupa toda la pantalla */
+  top: 0;
+  left: 0; /* inicia desde arriba izquierda */
+  width: 100%;
+  height: 100%; /* ocupa toda la pantalla */
   backdrop-filter: blur(6px); /* efecto borroso */
   background: rgba(30, 30, 50, 0.5); /* color semitransparente */
   z-index: 0; /* detrás de todo */
@@ -27,8 +29,10 @@ body {
 
 .figuras {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: 1; /* encima del fondo pero detrás de menú y form */
   pointer-events: none;
@@ -37,57 +41,126 @@ body {
 .figura {
   position: absolute; /* se mueve libremente */
   top: -100px; /* inicia fuera de la pantalla */
-  width: 40px; height: 40px; /* tamaño de la figura */
+  width: 40px;
+  height: 40px; /* tamaño de la figura */
   opacity: 0.9; /* transparencia */
   animation: caer 10s linear infinite; /* animación de caída continua */
 }
 
 /* Colores y formas de las figuras */
-.rojo { background: #ff0000; border-radius: 20%; }
-.azul { background: #0066ff; border-radius: 50%; }
-.verde { background: #00cc00; border-radius: 25%; }
-.amarillo { background: #ffff33; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+.rojo {
+  background: #ff0000;
+  border-radius: 20%;
+}
+.azul {
+  background: #0066ff;
+  border-radius: 50%;
+}
+.verde {
+  background: #00cc00;
+  border-radius: 25%;
+}
+.amarillo {
+  background: #ffff33;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
 
 /* Animación que hace caer y girar las figuras */
 @keyframes caer {
-  0% { transform: translateY(-100px) rotate(0deg); opacity: 0.9; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.3;
+  }
 }
 
 /* Posición horizontal y duración distinta para cada figura */
-.figura:nth-child(1) { left: 5%; animation-duration: 8s; }
-.figura:nth-child(2) { left: 15%; animation-duration: 12s; }
-.figura:nth-child(3) { left: 30%; animation-duration: 9s; }
-.figura:nth-child(4) { left: 45%; animation-duration: 11s; }
-.figura:nth-child(5) { left: 60%; animation-duration: 10s; }
-.figura:nth-child(6) { left: 75%; animation-duration: 14s; }
-.figura:nth-child(7) { left: 85%; animation-duration: 8s; }
-.figura:nth-child(8) { left: 50%; animation-duration: 13s; }
-.figura:nth-child(9) { left: 25%; animation-duration: 9s; }
-.figura:nth-child(10){ left: 90%; animation-duration: 11s; }
+.figura:nth-child(1) {
+  left: 5%;
+  animation-duration: 8s;
+}
+.figura:nth-child(2) {
+  left: 15%;
+  animation-duration: 12s;
+}
+.figura:nth-child(3) {
+  left: 30%;
+  animation-duration: 9s;
+}
+.figura:nth-child(4) {
+  left: 45%;
+  animation-duration: 11s;
+}
+.figura:nth-child(5) {
+  left: 60%;
+  animation-duration: 10s;
+}
+.figura:nth-child(6) {
+  left: 75%;
+  animation-duration: 14s;
+}
+.figura:nth-child(7) {
+  left: 85%;
+  animation-duration: 8s;
+}
+.figura:nth-child(8) {
+  left: 50%;
+  animation-duration: 13s;
+}
+.figura:nth-child(9) {
+  left: 25%;
+  animation-duration: 9s;
+}
+.figura:nth-child(10) {
+  left: 90%;
+  animation-duration: 11s;
+}
 
 /* ============================= */
 /* ANIMACIONES */
 @keyframes cambioLetra {
-  0% { color: #1f1f1f; } 
-  25% { color: #ffc857; } 
-  50% { color: #f25c54; } 
-  75% { color: #a8e6cf; } 
-  100% { color: #f5f5f5; }
+  0% {
+    color: #1f1f1f;
+  }
+  25% {
+    color: #ffc857;
+  }
+  50% {
+    color: #f25c54;
+  }
+  75% {
+    color: #a8e6cf;
+  }
+  100% {
+    color: #f5f5f5;
+  }
 }
 
 @keyframes cambioBox {
-  0% { box-shadow: 0 0 9px rgba(31,31,31,1); }
-  25% { box-shadow: 0 0 9px rgba(255,200,87,1); }
-  50% { box-shadow: 0 0 9px rgba(242,92,84,1); }
-  75% { box-shadow: 0 0 9px rgba(168,230,207,1); }
-  100% { box-shadow: 0 0 9px rgba(245,245,245,1); }
+  0% {
+    box-shadow: 0 0 9px rgba(31, 31, 31, 1);
+  }
+  25% {
+    box-shadow: 0 0 9px rgba(255, 200, 87, 1);
+  }
+  50% {
+    box-shadow: 0 0 9px rgba(242, 92, 84, 1);
+  }
+  75% {
+    box-shadow: 0 0 9px rgba(168, 230, 207, 1);
+  }
+  100% {
+    box-shadow: 0 0 9px rgba(245, 245, 245, 1);
+  }
 }
 
 /* ============================= */
 /* MENÚ PRINCIPAL */
 .menu-principal {
-  position: relative; 
+  position: relative;
   z-index: 20; /* encima de figuras y fondo */
   background: rgba(25, 25, 40, 0.95); /* fondo del menú */
   height: 70px;
@@ -101,11 +174,13 @@ body {
 }
 
 .menu-principal ul {
-  list-style: none; /* quita los puntos de lista */
-  display: flex; /* muestra los items en línea */
-  gap: 25px; /* espacio entre links */
+  list-style: none;
+  display: flex;
+  gap: 25px;
   margin: 0;
   padding: 0;
+  justify-content: flex-start; /* 👈 Los empuja hacia la izquierda */
+  margin-left: 60px; /* 👈 Ajustá este valor según lo que necesites */
 }
 
 .menu-principal li a {
@@ -134,15 +209,15 @@ body {
   margin: 60px auto 0 auto; /* centrado horizontal y separación arriba */
   width: 350px;
   border-radius: 0.75rem; /* esquinas redondeadas */
-  background-color: #1f1c33; 
+  background-color: #1f1c33;
   padding: 2rem;
   color: #f5f5f5;
   box-shadow: 0px 1px 2.5px #f25c54; /* sombra del contenedor */
   animation: cambioBox 10s linear infinite alternate; /* animación de sombra */
   z-index: 15; /* encima de figuras */
-  display: flex; 
+  display: flex;
   flex-direction: column; /* organiza elementos de arriba a abajo */
-  align-items: center; 
+  align-items: center;
   gap: 20px; /* espacio entre elementos */
 }
 
@@ -166,14 +241,14 @@ body {
 
 .boton-opcion {
   width: 100%;
-  background-color: #2b2847; 
+  background-color: #2b2847;
   color: #f5f5f5;
-  padding: 12px 0; 
-  border-radius: 10px; 
+  padding: 12px 0;
+  border-radius: 10px;
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
-  cursor: pointer; 
+  cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.3s ease; /* animación al pasar mouse */
 }
@@ -212,7 +287,7 @@ body {
 
 /* Oculta los radio buttons (los input tipo radio) */
 input[type="radio"] {
-  display: none; 
+  display: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
