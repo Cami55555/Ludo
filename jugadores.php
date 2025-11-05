@@ -59,7 +59,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
 
 <!-- Contenedor del formulario para elegir jugadoress -->
 <div class="contenedor-formulario">
-  <p class="titulo">Elige la cantidad de jugadores</p>
+  <p class="titulo">Elige la cantidad de jugadores:</p>
 
   <!-- Opciones de cantidad de jugadores -->
   <div class="grupo-opciones">
