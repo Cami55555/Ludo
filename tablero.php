@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $_SESSION['jugadores'] = array_values(
     array_filter(
       array_map(
-        fn ($color) => current(array_filter($_SESSION['jugadores'], fn ($j) => $j['color'] === $color)),
+        fn($color) => current(array_filter($_SESSION['jugadores'], fn($j) => $j['color'] === $color)),
         $ordenTablero
       )
     )
@@ -1019,7 +1019,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
         // Verificar si es el turno correcto
         if (encontrada.jugador !== turnoActual) {
 
-          turnoTexto.innerText = `No es tu turno. Le toca a: ${nombresColores[turnoActual]}`;
+          turnoTexto.innerText = `No es tu turno. Le toca a: ${nombresJugadores[turnoActual]}`;
           return;
         }
 
@@ -1040,6 +1040,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
         dibujarFichas();
       }
     }
+
 
     // =====================
     // LÓGICA DEL JUEGO
@@ -1067,7 +1068,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
         // Pasar turno solo si no salió 6 ni comió ficha
         if (!salio6) setTimeout(pasarTurno, 1000);
         else {
-          turnoTexto.innerText = `${jugador} puede tirar de nuevo (salió 6)`;
+          turnoTexto.innerText = `${nombresJugadores[turnoActual]} puede tirar de nuevo (salió 6)`;
           salio6 = false;
         }
       }
@@ -1222,7 +1223,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
 
       if (numero === 6) {
         salio6 = true;
-        turnoTexto.innerText = `🎉 ${colorJugador} sacó 6 — puedes mover una ficha o sacar una nueva.`;
+        turnoTexto.innerText = `🎉 ${nombresJugadores[turnoActual]} sacó 6 — puedes mover una ficha o sacar una nueva.`;
         document.getElementById('opciones-jugador').style.display = 'block';
 
         return;
@@ -1236,7 +1237,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
       const tieneEnTablero = tfichas[turnoActual] > -1;
 
       if (!tieneEnTablero) {
-        turnoTexto.innerText = `${colorJugador} no tiene fichas en el tablero. Turno perdido.`;
+        turnoTexto.innerText = `${nombresJugadores[turnoActual]} no tiene fichas en el tablero. Turno perdido.`;
         setTimeout(pasarTurno, 2000);
 
         return;
