@@ -362,7 +362,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
     // =====================
     
     const colores = ['red', 'green', 'yellow', 'blue'];
-    const nombresColores = ['rojo', 'verde', 'amarillo', 'azul'];
+    
 
     const canvas = document.getElementById('canvas-ludo');
     const ctx = canvas.getContext('2d');
@@ -378,6 +378,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
        blue: 'azul'
      };
     const nombresJugadores = jugadores.map(j => j.nombre);
+    const nombresColores = jugadores.map(j => j.color);
     // Estado del juego
     let salio6 = false;
     let dadoTirado = false;
@@ -392,7 +393,7 @@ if (localStorage.getItem("musicaActiva") === "true") {
 
     // Configuración del juego
     const urlParams = new URLSearchParams(window.location.search);
-    const cantidadJugadores = parseInt(urlParams.get('jugadores')) || 4;
+    const cantidadJugadores = <?= count($jugadores) ?>;
     const radioFicha = 17;
 
     const entradaJugadores = {
@@ -692,7 +693,8 @@ const rectaFinal = {
       verde: [null, null, null, null],
       amarillo: [null, null, null, null]
     };
-      let fichasacada = {
+
+    let fichasacada = {
       rojo: [false, false, false, false],
       azul: [false, false, false, false],
       verde: [false, false, false, false],
@@ -1082,7 +1084,7 @@ if (nuevaPos >= recorrido.length) {
       }
 
       // Esperar que elija una ficha
-      turnoTexto.innerText = `${colorJugador}, elige una ficha para mover ${numero} casillas.`;
+      turnoTexto.innerText = `${jugadores[turnoActual].nombre}, elige una ficha para mover ${numeroDado} casillas.`;
       esperandoMovimiento = true;
     }
 
@@ -1148,7 +1150,7 @@ if (nuevaPos >= recorrido.length) {
 
     function moverFichaExistente() {
       document.getElementById('opciones-jugador').style.display = 'none';
-      turnoTexto.innerText = `${nombreConColor(turnoActual)}, elige una ficha para mover ${numeroDado} casillas.`;
+      turnoTexto.innerText = `${ jugadores(turnoActual)}, elige una ficha para mover ${numeroDado} casillas.`;
       esperandoMovimiento = true;
       dado.addEventListener('click', tirarDado);
     }
