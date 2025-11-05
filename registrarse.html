@@ -46,11 +46,11 @@
       <form class="form" action="registro.php" method="post" id="formRegistro">
         <div class="input-group">
           <label for="nombre">Nombre:</label>
-          <input type="text" name="nombre" id="nombre" required />
+          <input type="text" name="nombre" id="nombre" minlength="3" required />
         </div>
         <div class="input-group">
           <label for="apellido">Apellido:</label>
-          <input type="text" name="apellido" id="apellido" required />
+          <input type="text" name="apellido" id="apellido" minlength="4" required />
         </div>
 
         <div class="input-group">
@@ -60,11 +60,11 @@
 
         <div class="input-group">
           <label for="correo">Correo Electrónico:</label>
-          <input type="email" name="mail" id="mail" required />
+          <input type="email" name="mail" id="mail" minlength="8" required />
         </div>
         <div class="input-group">
           <label for="contraseña">Contraseña:</label>
-          <input type="password" name="clave" id="clave" required />
+          <input type="password" name="clave" id="clave" minlength="8" required />
         </div>
 
         <br />
