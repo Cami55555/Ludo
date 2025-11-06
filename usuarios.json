@@ -79,5 +79,18 @@
         "clave": "123456789",
         "edad": "16",
         "wins": 0
+    },
+    {
+        "nombre": "Juan",
+        "apellido": "Castro",
+        "usuario": "Juan01_GG",
+        "mail": "juan_gg@gmail.com",
+        "clave": "juan03548",
+        "edad": "18",
+        "wins": 0
+    },
+    [],
+    {
+    
     }
 ]
