@@ -69,7 +69,7 @@ body {
   list-style: none; /* Quita viñetas */
   display: flex; /* Menú horizontal */
   gap: 30px; /* Espacio entre enlaces */
-  margin-left: 210%; /* Mueve los enlaces mas al costado */
+  margin-left: 130%; /* Mueve los enlaces mas al costado */
   padding: 0;
   z-index: 20;
   margin-top: 0; /* mover para arriba*/

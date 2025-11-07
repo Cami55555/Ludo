@@ -29,6 +29,21 @@ if (localStorage.getItem("musicaActiva") === "true") {
 }
 </script>
 
+<!-- HEADER -->
+    <header class="main-header">
+      <div class="logo">
+        <a href="index.php"><img src="imagenes/logo.png" alt="Home" /></a>
+        <div class="texto-logo">
+
+        </div>
+      </div>
+      <nav class="nav-bar">
+        <a href="jugadores.php">Jugar</a>
+        <a href="historia.php">Historia</a>
+        <a href="reglas.php">Reglas</a>
+
+      </nav>
+    </header>
 
 
 <!-- Contenedor del formulario -->
