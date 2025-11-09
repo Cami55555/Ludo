@@ -39,7 +39,7 @@ foreach ($users as $k => $u) {
 // Si no encontró coincidencias, muestra error
 if ($aux == count($users)) {
     die("El usuario no se encontró. Verifique que los datos ingresados sean correctos en el 
-    <a href='iniciarsesion.html'>login</a> o si no está registrado 
+    <a href='iniciosesion.html'>login</a> o si no está registrado 
     <a href='registrarse.html'>registrese</a>");
 }
 ?>
