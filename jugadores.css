@@ -163,24 +163,26 @@ body {
   position: relative;
   z-index: 20; /* encima de figuras y fondo */
   background: rgba(25, 25, 40, 0.95); /* fondo del menú */
-  height: 70px;
-  display: flex; /* hace que logo y lista estén en línea */
+  height: 8vh; /* altura en proporción a la pantalla */
+  display: flex; /* logo y links en línea */
   align-items: center; /* centra verticalmente */
-  justify-content: space-between; /* separa logo y links */
-  padding: 0 40px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  border-radius: 8px;
+  justify-content: space-between; /* mantiene separación entre logo y menú */
+  padding: 0 3%; /* margen lateral en porcentaje */
+  border-bottom: 0.3vh solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 1vw rgba(0, 0, 0, 0.7);
+  border-radius: 0.8vw;
 }
 
+/* Lista de links */
 .menu-principal ul {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 3vw; /* espacio entre cada link */
   margin: 0;
   padding: 0;
-  justify-content: flex-start; /* 👈 Los empuja hacia la izquierda */
-  margin-left: 60px; /* 👈 Ajustá este valor según lo que necesites */
+  justify-content: center; /* centra los links dentro del bloque */
+  flex: 1; /* ocupa el espacio libre sin afectar el logo */
+  margin-right: 5%; /* mueve a la izquierda */
 }
 
 .menu-principal li a {

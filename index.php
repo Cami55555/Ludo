@@ -6,7 +6,7 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css?v=1.0">
   <title>Ludo-Patia</title>
 </head>
 <body>
@@ -86,31 +86,47 @@ if (localStorage.getItem("musicaActiva") === "true") {
 </body>
  <!--Footer hermoso-->
      <footer class="main-footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Redes Sociales</h3><!--Apartado de redes sociales-->
-          <div class="redes-sociales">
-            <p>📸 Instagram: @Ludo-patia</p>
-            <p>📘 Facebook: LudoGame</p>
-            <p>🐦 Twitter: @Ludo-Patia-Game</p>
-          </div>
-        </div>
-   
-        <div class="footer-section"><!--Contacto-->
-          <h3>Contacto</h3>
-          <p>Correo: Ludopatia@gmail.com.ar</p>
-          <p>Teléfono: +54 3548-462010 </p>
-        </div>
+  <div class="footer-content">
+    
+    <!-- Logo del juego -->
+    <div class="footer-section logo-footer">
+      <img src="imagenes/logo.png" alt="Logo Ludo-Patia" class="footer-logo">
+      <h2 class="footer-titulo">LUDO-PATIA</h2>
+      <p class="footer-eslogan">🎲 Diversión, estrategia y amistad en cada partida.</p>
+    </div>
 
-        <div class="footer-section"><!--Ubicación-->
-          <h3>Ubicación:</h3>
-          <p>La Falda, Cordoba, San Jorge</p>
-          <p>San Esteban 76</p>
-        </div>
-      </div>
+    <!-- Redes sociales -->
+    <div class="footer-section redes">
+      <h3>🌐 Redes Sociales</h3>
+      <p>📸 Instagram: @LudoPatia</p>
+      <p>📘 Facebook: LudoPatiaOficial</p>
+      <p>🐦 Twitter: @LudoPatiaGame</p>
+      <p>▶️ YouTube: LudoPatiaPlay</p>
+    </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2025 Ludo-Patia. Todos los derechos reservados.</p>
-      </div>
-    </footer>
+    <!-- Contacto -->
+    <div class="footer-section contacto">
+      <h3>📞 Contacto</h3>
+      <p>✉️ Correo: Ludopatia@gmail.com.ar</p>
+      <p>📱 Teléfono: +54 3548-462010</p>
+      <p>💬 Soporte: Disponible 24/7</p>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="footer-section ubicacion">
+      <h3>📍 Ubicación</h3>
+      <p>🏫 Escuela San Jorge</p>
+      <p>📌 San Esteban 76</p>
+      <p>🌎 La Falda, Córdoba, Argentina</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 <strong>Ludo-Patia</strong> — Todos los derechos reservados.</p>
+    <p class="footer-lema">💡 Creado por estudiantes, para jugadores.</p>
+  </div>
+</footer>
+
+
 </html>

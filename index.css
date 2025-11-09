@@ -69,7 +69,7 @@ body {
   list-style: none; /* Quita viñetas */
   display: flex; /* Menú horizontal */
   gap: 30px; /* Espacio entre enlaces */
-  margin-left: 210%; /* Mueve los enlaces mas al costado */
+  margin-left: 130%; /* Mueve los enlaces mas al costado */
   padding: 0;
   z-index: 20;
   margin-top: 0; /* mover para arriba*/
@@ -117,10 +117,12 @@ body {
   margin-bottom: 10px;
 }
 
-/* "LUDO-PATIA" animado con gradiente y borde blanco */
+/* === TÍTULO "LUDO-PATIA" MULTICOLOR CON REFLEJO MULTICOLOR === */
 .titulo-ludo {
   font-size: 72px;
   font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
   background: linear-gradient(
     90deg,
     red,
@@ -131,17 +133,18 @@ body {
     blue,
     green,
     yellow
-  ); /* Gradiente con los colores de las fichas */
-  background-size: 400% 100%; /* Permite animación horizontal */
-  -webkit-background-clip: text; /* Aplica gradiente solo al texto */
-  -webkit-text-fill-color: transparent; /* Texto transparente para mostrar gradiente */
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  animation: animar-gradiente 5s linear infinite; /* Gradiente animado de izquierda a derecha */
+  animation: animar-gradiente 5s linear infinite;
+  text-shadow:
+    0 0 4px rgba(255, 255, 255, 0.15),
+    0 0 12px rgba(0, 0, 0, 0.3); /* Sombras suaves, no blanquea colores */
 }
 
-/* Borde blanco alrededor del texto */
+/* Borde blanco muy fino */
 .titulo-ludo::after {
   content: "LUDO-PATIA";
   position: absolute;
@@ -150,8 +153,29 @@ body {
   width: 100%;
   height: 100%;
   color: transparent;
-  -webkit-text-stroke: 2px white; /* Borde blanco que resalta sobre cualquier fondo */
+  -webkit-text-stroke: 1.5px white;
   pointer-events: none;
+  mix-blend-mode: screen; /* Hace que el borde se fusione con los colores */
+}
+
+/* Reflejo multicolor animado */
+.titulo-ludo::before {
+  content: "LUDO-PATIA";
+  position: absolute;
+  top: 100%; /* justo debajo del texto */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(-1);
+  opacity: 0.25;
+  background: inherit; /* usa el mismo gradiente que el texto */
+  background-size: inherit;
+  background-position: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  filter: blur(1.2px);
+  animation: animar-gradiente 5s linear infinite;
 }
 
 /* Animación del gradiente horizontal */
@@ -163,6 +187,7 @@ body {
     background-position: 100% 0%;
   }
 }
+
 
 /* ----------------------
    FIGURAS ANIMADAS
@@ -259,23 +284,25 @@ body {
   animation-duration: 11s;
 }
 
-/* Estilos basicos del footer */
-/* FOOTER con línea animada */
+/* -------------------------------
+   FOOTER RESPONSIVE - LUDO-PATIA
+---------------------------------*/
+
 .main-footer {
   background-color: #1a1a2e;
   color: #f5f5f5;
-  font-size: 13px;
+  font-size: 1vw;
   width: 100%;
   flex-shrink: 0;
-  margin-top: auto; /* empuja el footer al fondo */
-  border-top: 5px solid transparent; /* Base transparente */
+  margin-top: auto;
+  border-top: 0.5vh solid transparent;
   background-image: linear-gradient(#1a1a2e, #1a1a2e),
-    linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow); /* Misma animación que el título */
+    linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-size: 400% 100%;
-  animation: animar-gradiente 5s linear infinite; /* Reutiliza la animación del título */
-  padding: 40px 20px 5px 20px;
+  animation: animar-gradiente 5s linear infinite;
+  padding: 4% 3% 1% 3%;
   box-sizing: border-box;
   z-index: 20;
   position: relative;
@@ -283,55 +310,163 @@ body {
 
 /* Contenedor de las secciones dentro del footer */
 .footer-content {
-  display: flex; /* Organiza las secciones en fila */
-  gap: 30px; /* Espacio horizontal entre cada sección */
-  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  display: flex;
+  justify-content: space-between; /* Mantiene las secciones alineadas en fila */
+  align-items: flex-start;
+  flex-wrap: nowrap; /* Impide que bajen */
+  gap: 2%;
+  z-index: 20;
   position: relative;
 }
 
 /* Cada sección individual del footer */
 .footer-section {
-  flex: 1; /* Cada sección ocupa la misma proporción del espacio disponible */
-  display: flex; /* Convierte la sección en contenedor flex */
-  flex-direction: column; /* Los elementos dentro de la sección se apilan verticalmente */
-  align-items: center; /* Centra horizontalmente todos los elementos dentro de la sección */
-  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
+  flex: 1 1 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
   position: relative;
+  min-width: 180px;
 }
 
-/* Estilo de los títulos dentro de cada sección */
+.footer-section:hover {
+  transform: translateY(-4%);
+}
+
+/* Logo y título principal */
+.logo-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo {
+  width: 12%;
+  min-width: 70px;
+  height: auto;
+  margin-bottom: 1%;
+  filter: drop-shadow(0 0 0.4vw #fff);
+}
+
+.footer-titulo {
+  font-size: 2.2vw;
+  margin: 0.5% 0;
+  color: #fff;
+  text-shadow: 0 0 0.5vw #ff0000, 0 0 0.8vw #00ffff;
+  animation: cambioLetra 6s linear infinite alternate;
+}
+
+.footer-eslogan {
+  font-size: 1.2vw;
+  color: #ccc;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Títulos */
 .footer-section h3 {
-  margin: 0 0 10px 0;
-  padding-left: 0;
-  font-size: 20px;
-  animation: cambioLetra 10s linear infinite alternate;
-  text-align: left; /* ahora centrado */
-  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
-  position: relative;
+  font-size: 1.4vw;
+  color: #fff;
+  margin-bottom: 1%;
+  text-shadow: 0 0 0.5vw #00ffff;
+  animation: cambioLetra 6s linear infinite alternate;
 }
 
-/* Párrafos dentro de cada sección */
+/* Párrafos */
 .footer-section p {
-  margin: 6px 0; /* Espacio vertical entre párrafos */
-  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
-  position: relative;
+  margin: 0.5% 0;
+  color: #ddd;
+  font-size: 1.05vw;
+  letter-spacing: 0.05em;
 }
 
-/* Pie de página inferior con copyright */
-.footer-bottom {
-  text-align: center; /* Centra el texto horizontalmente */
-  color: #888; /* Color gris medio */
-  font-size: 13px; /* Tamaño de la fuente */
-  margin-top: 50px; /* Espacio superior para separarlo del contenido del footer */
-  z-index: 20; /* Encima del fondo y figuras, debajo del menú */
-  position: relative;
+/* Alineación específica para la ubicación */
+.footer-section.ubicacion {
+  align-items: flex-end; /* contenido hacia la derecha */
+  text-align: right;
 }
+
+/* Parte inferior */
+.footer-bottom {
+  text-align: center;
+  color: #aaa;
+  font-size: 1vw;
+  margin-top: 3%;
+}
+
+.footer-lema {
+  margin-top: 0.5%;
+  color: #fff;
+  font-style: italic;
+  text-shadow: 0 0 0.6vw #00ffff, 0 0 0.8vw #ff00ff;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-section {
+    flex: 1 1 45%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section.ubicacion {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-logo {
+    width: 18%;
+  }
+
+  .footer-titulo {
+    font-size: 4vw;
+  }
+
+  .footer-section h3 {
+    font-size: 2.5vw;
+  }
+
+  .footer-section p {
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-section {
+    flex: 1 1 100%;
+  }
+
+  .footer-logo {
+    width: 25%;
+  }
+
+  .footer-titulo {
+    font-size: 5vw;
+  }
+}
+
+
+
+
+
+
+
+
+
 /* ----------------------
    BOTÓN "JUGAR"
 ----------------------- */
 .btn-jugar {
   display: inline-block;
-  margin-top: 40px;
+  margin-top: 100px;
   padding: 16px 60px;
   font-size: 28px;
   font-weight: 900;
@@ -396,24 +531,32 @@ body {
 /* ----------------------
    MENSAJE "INICIÁ SESIÓN"
 ----------------------- */
+/* ----------------------
+   MENSAJE "INICIÁ SESIÓN" (RESPONSIVE)
+----------------------- */
 .mensaje-inicio {
-  font-size: 26px;
+  font-size: 2vw; /* Escala con el ancho de la pantalla */
   font-weight: 600;
   color: #ffffff;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  margin-top: 40px;
-  letter-spacing: 1px;
+  text-shadow: 0 0 1vw rgba(255, 255, 255, 0.3);
+  margin: 0.5% 0; /* Espaciado pequeño entre líneas */
+  letter-spacing: 0.1vw;
   text-align: center;
   animation: aparecerTexto 1s ease-in-out;
   z-index: 10;
   position: relative;
 }
 
+/* Solo el primer mensaje tendrá espacio hacia abajo del título */
+.mensaje-inicio:first-of-type {
+  margin-top: 20vh; /* Baja proporcionalmente al alto de la pantalla */
+}
+
 /* Animación suave de entrada */
 @keyframes aparecerTexto {
   0% {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(1vh);
   }
   100% {
     opacity: 1;
