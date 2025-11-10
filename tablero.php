@@ -41,293 +41,466 @@ $jugadores = $_SESSION['jugadores'] ?? [];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tablero de Ludo - Corregido</title>
   <style>
-    /* ----------------------
+  /* ----------------------
    ESTILO GENERAL
 ----------------------- */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
-      overflow: hidden;
-      position: relative;
-      color: white;
-      width: 100vw;
-      height: 100vh;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+    position: relative;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+  }
 
-    /* ----------------------
+  /* ----------------------
    FONDO LIGERAMENTE BORROSO
 ----------------------- */
-    .fondo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(6px);
-      background: rgba(30, 30, 50, 0.5);
-      z-index: 0;
-    }
+  .fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(30, 30, 50, 0.5);
+    z-index: 0;
+  }
 
-    .fondo::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
-      z-index: 1;
-    }
+  .fondo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 70%);
+    z-index: 1;
+  }
 
-    /* ----------------------
+  /* ----------------------
    MENÚ PRINCIPAL
 ----------------------- */
-    .menu-principal {
-      position: relative;
-      z-index: 20;
-      background: rgba(25, 25, 40, 0.9);
-      height: 8vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      /* logo a la izquierda, botones a la derecha */
-      padding: 2vh 4vw;
-      border-bottom: 0.3vh solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
-      border-radius: 1vh;
-    }
+  .menu-principal {
+    position: relative;
+    z-index: 20;
+    background: rgba(25, 25, 40, 0.9);
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centramos los enlaces */
+    padding: 2vh 4vw;
+    border-bottom: 0.3vh solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.7);
+    border-radius: 1vh;
+  }
 
-    .menu-principal ul {
-      list-style: none;
-      display: flex;
-      gap: 3vw;
-      margin: 0;
-      padding: 0;
-    }
+  /* Logo a la izquierda */
+  .menu-principal .logo {
+    position: absolute;
+    left: 4vw;
+    display: flex;
+    align-items: center;
+  }
 
-    .menu-principal li a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      font-size: 2vh;
-      transition: 0.3s;
-      white-space: nowrap;
-    }
+  .logo img {
+    height: 4vh;
+    width: auto;
+  }
 
-    .menu-principal li a:hover {
-      color: #00ffff;
-    }
+  /* Lista del menú */
+  .menu-principal ul {
+    list-style: none;
+    display: flex;
+    gap: 3vw;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .logo img {
-      height: 4vh;
-      width: auto;
-    }
+  /* Enlaces del menú */
+  .menu-principal li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 800; /* más grueso */
+    font-size: 2.2vh;
+    transition: 0.3s;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
 
-    /* ----------------------
+  /* Hover amarillo con brillo */
+  .menu-principal li a:hover {
+    color: #ffeb3b;
+    text-shadow: 0 0 10px #ffeb3b;
+  }
+
+  /* ----------------------
    TITULOS
 ----------------------- */
-    .titulos {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      margin-top: 10vh;
+  .titulos {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin-top: 10vh;
+  }
+
+  .bienvenidos {
+    font-size: 4vh;
+    color: white;
+    text-shadow: 0 0 0.5vh white;
+    margin-bottom: 1vh;
+  }
+
+  .titulo-ludo {
+    font-size: 8vh;
+    font-weight: 900;
+    background: linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow);
+    background-size: 400% 100%;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5vw;
+    animation: animar-gradiente 5s linear infinite;
+  }
+
+  .titulo-ludo::after {
+    content: 'LUDO-PATIA';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    -webkit-text-stroke: 0.2vh white;
+    pointer-events: none;
+  }
+
+  @keyframes animar-gradiente {
+    0% {
+      background-position: 0% 0%;
     }
 
-    .bienvenidos {
-      font-size: 4vh;
-      color: white;
-      text-shadow: 0 0 0.5vh white;
-      margin-bottom: 1vh;
+    100% {
+      background-position: 100% 0%;
     }
+  }
 
-    .titulo-ludo {
-      font-size: 8vh;
-      font-weight: 900;
-      background: linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow);
-      background-size: 400% 100%;
-
-      -webkit-text-fill-color: transparent;
-      position: relative;
-      text-transform: uppercase;
-      letter-spacing: 0.5vw;
-      animation: animar-gradiente 5s linear infinite;
-    }
-
-    .titulo-ludo::after {
-      content: 'LUDO-PATIA';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: transparent;
-      -webkit-text-stroke: 0.2vh white;
-      pointer-events: none;
-    }
-
-    @keyframes animar-gradiente {
-      0% {
-        background-position: 0% 0%;
-      }
-
-      100% {
-        background-position: 100% 0%;
-      }
-    }
-
-    /* ----------------------
+  /* ----------------------
    FIGURAS ANIMADAS
 ----------------------- */
-    .figuras {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 1;
-    }
+  .figuras {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
 
-    .figura {
-      position: absolute;
-      top: -5vh;
-      width: 4vw;
-      height: 4vw;
+  .figura {
+    position: absolute;
+    top: -5vh;
+    width: 4vw;
+    height: 4vw;
+    opacity: 0.9;
+    animation: caer 10s linear infinite;
+    border-radius: 0;
+  }
+
+  .rojo {
+    background: #ff0000;
+  }
+
+  .azul {
+    background: #0066ff;
+    border-radius: 50%;
+  }
+
+  .verde {
+    background: #00cc00;
+    border-radius: 0%;
+  }
+
+  .amarillo {
+    background: #ffff33;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  @keyframes caer {
+    0% {
+      transform: translateY(-5vh) rotate(0deg);
       opacity: 0.9;
-      animation: caer 10s linear infinite;
-      border-radius: 0;
     }
 
-    .rojo {
-      background: #ff0000;
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0.3;
     }
+  }
 
-    .azul {
-      background: #0066ff;
-      border-radius: 50%;
-    }
-
-    .verde {
-      background: #00cc00;
-      border-radius: 0%;
-    }
-
-    .amarillo {
-      background: #ffff33;
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    @keyframes caer {
-      0% {
-        transform: translateY(-5vh) rotate(0deg);
-        opacity: 0.9;
-      }
-
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0.3;
-      }
-    }
-
-    /* ----------------------
+  /* ----------------------
    TABLERO Y CANVAS
 ----------------------- */
-    .tablero-container {
-      position: relative;
-      width: 80vw;
-      max-width: 90vh;
-      height: 80vw;
-      max-height: 90vh;
-      margin: 5vh auto 0 auto;
-      z-index: 5;
-      transform-origin: top left;
-    }
+  .tablero-container {
+    position: relative;
+    width: 80vw;
+    max-width: 90vh;
+    height: 80vw;
+    max-height: 90vh;
+    margin: 5vh auto 0 auto;
+    z-index: 5;
+    transform-origin: top left;
+  }
 
-    .imagen-tablero {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+  .imagen-tablero {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 
-    #canvas-ludo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      cursor: pointer;
-    }
+  #canvas-ludo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+  }
 
-    /* ----------------------
+  /* ----------------------
    DADO
 ----------------------- */
-    .dado-container {
-      position: absolute;
-      top: 50%;
-      right: 10%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 15;
-    }
+  .dado-container {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 15;
+  }
 
-    .titulo-dado {
-      color: #fff;
-      margin-bottom: 1vh;
-      font-weight: bold;
-      font-size: 2vh;
-    }
+  .titulo-dado {
+    color: #fff;
+    margin-bottom: 1vh;
+    font-weight: bold;
+    font-size: 2vh;
+  }
 
-    .dado-container img {
-      width: 100%;
-      /* relativo al tablero */
-      max-width: 80px;
-      /* tamaño máximo */
-      aspect-ratio: 1;
-      object-fit: cover;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+  .dado-container img {
+    width: 100%;
+    max-width: 80px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    cursor: pointer;
+    transition: 0.2s;
+  }
 
-    .dado-container img:hover {
-      transform: scale(1.1);
-    }
+  .dado-container img:hover {
+    transform: scale(1.1);
+  }
 
-    #turno {
-      position: absolute;
-      /* lo posicionamos sobre el tablero */
-      top: 13vh;
-      /* un poco debajo del menú (ajusta según tu menú) */
-      left: 50%;
-      /* centrado horizontal */
-      transform: translateX(-50%);
-      /* realmente lo centra */
-      background: rgba(0, 0, 0, 0.6);
-      /* fondo semitransparente */
-      padding: 1vh 2vw;
-      border-radius: 1vh;
-      font-size: 4vh;
-      font-weight: bold;
-      text-align: center;
-      z-index: 30;
-      /* por encima de todo */
-      max-width: 80vw;
-      /* opcional, para que no sea demasiado ancho */
-      color: #fff;
-    }
+  #turno {
+    position: absolute;
+    top: 13vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1vh 2vw;
+    border-radius: 1vh;
+    font-size: 4vh;
+    font-weight: bold;
+    text-align: center;
+    z-index: 30;
+    max-width: 80vw;
+    color: #fff;
+  }
 
-    #turno {
-      transition: opacity 0.5s ease;
-      opacity: 1;
-    }
+  #turno {
+    transition: opacity 0.5s ease;
+    opacity: 1;
+  }
 
-    #turno.oculto {
-      opacity: 0;
-    }
-  </style>
+  #turno.oculto {
+    opacity: 0;
+  }
+
+  /* -------------------------------
+   FOOTER RESPONSIVE - LUDO-PATIA
+---------------------------------*/
+
+.main-footer {
+  background-color: #1a1a2e;
+  color: #f5f5f5;
+  font-size: 1vw;
+  width: 100%;
+  flex-shrink: 0;
+  margin-top: auto;
+  border-top: 0.5vh solid transparent;
+  background-image: linear-gradient(#1a1a2e, #1a1a2e),
+    linear-gradient(90deg, red, blue, green, yellow, red, blue, green, yellow);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 400% 100%;
+  animation: animar-gradiente 5s linear infinite;
+  padding: 4% 3% 1% 3%;
+  box-sizing: border-box;
+  z-index: 20;
+  position: relative;
+}
+
+/* Contenedor de las secciones dentro del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between; /* Mantiene las secciones alineadas en fila */
+  align-items: flex-start;
+  flex-wrap: nowrap; /* Impide que bajen */
+  gap: 2%;
+  z-index: 20;
+  position: relative;
+}
+
+/* Cada sección individual del footer */
+.footer-section {
+  flex: 1 1 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  min-width: 180px;
+}
+
+.footer-section:hover {
+  transform: translateY(-4%);
+}
+
+/* Logo y título principal */
+.logo-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-logo {
+  width: 12%;
+  min-width: 70px;
+  height: auto;
+  margin-bottom: 1%;
+  filter: drop-shadow(0 0 0.4vw #fff);
+}
+
+.footer-titulo {
+  font-size: 2.2vw;
+  margin: 0.5% 0;
+  color: #fff;
+  text-shadow: 0 0 0.5vw #ff0000, 0 0 0.8vw #00ffff;
+  animation: cambioLetra 6s linear infinite alternate;
+}
+
+.footer-eslogan {
+  font-size: 1.2vw;
+  color: #ccc;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Títulos */
+.footer-section h3 {
+  font-size: 1.4vw;
+  color: #fff;
+  margin-bottom: 1%;
+  text-shadow: 0 0 0.5vw #00ffff;
+  animation: cambioLetra 6s linear infinite alternate;
+}
+
+/* Párrafos */
+.footer-section p {
+  margin: 0.5% 0;
+  color: #ddd;
+  font-size: 1.05vw;
+  letter-spacing: 0.05em;
+}
+
+/* Alineación específica para la ubicación */
+.footer-section.ubicacion {
+  align-items: flex-end; /* contenido hacia la derecha */
+  text-align: right;
+}
+
+/* Parte inferior */
+.footer-bottom {
+  text-align: center;
+  color: #aaa;
+  font-size: 1vw;
+  margin-top: 3%;
+}
+
+.footer-lema {
+  margin-top: 0.5%;
+  color: #fff;
+  font-style: italic;
+  text-shadow: 0 0 0.6vw #00ffff, 0 0 0.8vw #ff00ff;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-section {
+    flex: 1 1 45%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section.ubicacion {
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-logo {
+    width: 18%;
+  }
+
+  .footer-titulo {
+    font-size: 4vw;
+  }
+
+  .footer-section h3 {
+    font-size: 2.5vw;
+  }
+
+  .footer-section p {
+    font-size: 2vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-section {
+    flex: 1 1 100%;
+  }
+
+  .footer-logo {
+    width: 25%;
+  }
+
+  .footer-titulo {
+    font-size: 5vw;
+  }
+}
+</style>
+
 </head>
 
 <!-- Musica de Fondo -->
@@ -392,10 +565,64 @@ $jugadores = $_SESSION['jugadores'] ?? [];
     </div>
   </div>
 
+  <!--Footer hermoso-->
+     <footer class="main-footer">
+  <div class="footer-content">
+    
+    <!-- Logo del juego -->
+    <div class="footer-section logo-footer">
+      <img src="imagenes/logo.png" alt="Logo Ludo-Patia" class="footer-logo">
+      <h2 class="footer-titulo">LUDO-PATIA</h2>
+      <p class="footer-eslogan">🎲 Diversión, estrategia y amistad en cada partida.</p>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer-section redes">
+      <h3>🌐 Redes Sociales</h3>
+      <p>📸 Instagram: @LudoPatia</p>
+      <p>📘 Facebook: LudoPatiaOficial</p>
+      <p>🐦 Twitter: @LudoPatiaGame</p>
+      <p>▶️ YouTube: LudoPatiaPlay</p>
+    </div>
+
+    <!-- Contacto -->
+    <div class="footer-section contacto">
+      <h3>📞 Contacto</h3>
+      <p>✉️ Correo: Ludopatia@gmail.com.ar</p>
+      <p>📱 Teléfono: +54 3548-462010</p>
+      <p>💬 Soporte: Disponible 24/7</p>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="footer-section ubicacion">
+      <h3>📍 Ubicación</h3>
+      <p>🏫 Escuela San Jorge</p>
+      <p>📌 San Esteban 76</p>
+      <p>🌎 La Falda, Córdoba, Argentina</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 <strong>Ludo-Patia</strong> — Todos los derechos reservados.</p>
+    <p class="footer-lema">💡 Creado por estudiantes, para jugadores.</p>
+  </div>
+</footer>
+
+
+
+<audio id="sonido-comer" src="Sonidos/comer.wav" preload="auto"></audio>
+
+
   <script>
     // =====================
     // VARIABLES GLOBALES
     // =====================
+
+
+     // audio de ficha comida
+    const sonidoComer = document.getElementById("sonido-comer");
+
 
     const colores = ['red', 'green', 'yellow', 'azul'];
 
@@ -1046,33 +1273,38 @@ $jugadores = $_SESSION['jugadores'] ?? [];
     // LÓGICA DEL JUEGO
     // =====================
     function moverFichaSeleccionada() {
-      if (!fichaSeleccionada) {
-        turnoTexto.innerText = "Primero selecciona una ficha.";
-        return;
-      }
+  if (!fichaSeleccionada) {
+    turnoTexto.innerText = "Primero selecciona una ficha.";
+    return;
+  }
 
-      const jugador = nombresColores[fichaSeleccionada.jugador];
-      const idx = fichaSeleccionada.indice;
+  const jugador = nombresColores[fichaSeleccionada.jugador];
+  const idx = fichaSeleccionada.indice;
 
-      // Intentar mover ficha
-      const turnoExtra = comerFichas(jugador, idx, numeroDado);
+  // Intentar mover ficha
+  const turnoExtraPorComer = comerFichas(jugador, idx, numeroDado);
 
-      fichaSeleccionada = null;
-      esperandoMovimiento = false;
+  fichaSeleccionada = null;
+  esperandoMovimiento = false;
 
-      if (turnoExtra) {
-        salio6 = false; // comer ficha da turno extra
-        turnoTexto.innerText += " Tira de nuevo.";
-        dado.addEventListener('click', tirarDado);
-      } else {
-        // Pasar turno solo si no salió 6 ni comió ficha
-        if (!salio6) setTimeout(pasarTurno, 1000);
-        else {
-          turnoTexto.innerText = `${nombresJugadores[turnoActual]} puede tirar de nuevo (salió 6)`;
-          salio6 = false;
-        }
-      }
-    }
+  // CASO 1: si comió ficha → turno extra
+  if (turnoExtraPorComer) {
+    salio6 = false;
+    turnoTexto.innerHTML += " 🎯 Puede tirar de nuevo.";
+    dado.addEventListener('click', tirarDado);
+    return;
+  }
+
+  // CASO 2: si sacó 6 → turno extra
+  if (numeroDado === 6) {
+    turnoTexto.innerHTML = `${nombreConColor(turnoActual)} puede tirar de nuevo (sacó 6).`;
+    dado.addEventListener('click', tirarDado);
+    return;
+  }
+
+  // CASO 3: ningún turno extra → pasar turno
+  setTimeout(pasarTurno, 1000);
+}
 
 
 
@@ -1146,7 +1378,16 @@ $jugadores = $_SESSION['jugadores'] ?? [];
                   gfichas[i]++;
                   tfichas[i]--;
                   turnoExtra = true;
-                  turnoTexto.innerText = `${jugador} comió una ficha de ${colorOcupante}! Puede tirar de nuevo.`;
+                  turnoTexto.innerHTML = `${nombreConColor(turnoActual)} comió una ficha de ${nombreConColor(colorOcupante)}! Puede tirar de nuevo.`;
+                  // Reproducir sonido de comer ficha
+                   sonidoComer.currentTime = 0;
+                   sonidoComer.play().then(() => 
+                   {
+                        console.log("🎵 Sonido reproducido correctamente.");
+                       }).catch(err => 
+                     {
+                     console.warn("⚠️ No se pudo reproducir el sonido:", err);
+                     });
                   conflict = false;
                   break;
                 }
@@ -1223,7 +1464,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
 
       if (numero === 6) {
         salio6 = true;
-        turnoTexto.innerText = `🎉 ${nombresJugadores[turnoActual]} sacó 6 — puedes mover una ficha o sacar una nueva.`;
+         turnoTexto.innerHTML = `${nombreConColor(turnoActual)} sacó 6 — Tiene otro turno.`;
         document.getElementById('opciones-jugador').style.display = 'block';
 
         return;
@@ -1237,14 +1478,14 @@ $jugadores = $_SESSION['jugadores'] ?? [];
       const tieneEnTablero = tfichas[turnoActual] > -1;
 
       if (!tieneEnTablero) {
-        turnoTexto.innerText = `${nombresJugadores[turnoActual]} no tiene fichas en el tablero. Turno perdido.`;
+        turnoTexto.innerHTML = `${nombreConColor(turnoActual)} no tiene fichas en el tablero. Turno perdido.`;
         setTimeout(pasarTurno, 2000);
 
         return;
       }
 
       // Esperar que elija una ficha
-      turnoTexto.innerText = `${jugadores[turnoActual].nombre}, elige una ficha para mover ${numeroDado} casillas.`;
+      turnoTexto.innerHTML = `${nombreConColor(turnoActual)}, elige una ficha para mover ${numeroDado} casillas.`;
       esperandoMovimiento = true;
     }
 
@@ -1272,7 +1513,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
 
       // SI HAY FICHA DEL MISMO COLOR, NO PODEMOS SACAR
       if (ocupadaPor === colorUsando) {
-        turnoTexto.innerText = "No puedes sacar, la casilla de salida está ocupada por tu ficha.";
+        turnoTexto.innerHTML = `${nombreConColor(turnoActual)}, no puedes sacar, la casilla de salida está ocupada por tu ficha`;
         return;
       }
 
@@ -1286,7 +1527,9 @@ $jugadores = $_SESSION['jugadores'] ?? [];
             tfichas[nombresColores.indexOf(ocupadaPor)]--;
           }
         }
-        turnoTexto.innerText = `${colorUsando} comió una ficha de ${ocupadaPor} y puede salir.`;
+        turnoTexto.innerHTML = `${nombreConColor(turnoActual)} comió una ficha de ${nombreConColor(ocupadaPor)} y puede salir.`;
+        sonidoComer.currentTime = 0;
+        sonidoComer.play();
       }
 
       // MOVER FICHA DEL GARAGE AL TABLERO
@@ -1299,7 +1542,7 @@ $jugadores = $_SESSION['jugadores'] ?? [];
       tfichas[turnoActual]++;
 
       document.getElementById('opciones-jugador').style.display = 'none';
-      turnoTexto.innerText += ` ${colorUsando} sacó una ficha. Puede tirar de nuevo.`;
+      
 
       dibujarFichas();
       salio6 = false; // reset para el próximo turno
@@ -1310,11 +1553,17 @@ $jugadores = $_SESSION['jugadores'] ?? [];
 
 
     function moverFichaExistente() {
-      document.getElementById('opciones-jugador').style.display = 'none';
-      turnoTexto.innerText = `${ jugadores(turnoActual)}, elige una ficha para mover ${numeroDado} casillas.`;
-      esperandoMovimiento = true;
-      dado.addEventListener('click', tirarDado);
-    }
+  document.getElementById('opciones-jugador').style.display = 'none';
+
+  turnoTexto.innerHTML = `${nombreConColor(turnoActual)}, elige una ficha para mover ${numeroDado} casillas.`;
+
+  esperandoMovimiento = true; // habilita el click en el tablero
+  fichaSeleccionada = null;   // aseguramos que empiece sin selección previa
+
+  // No volvemos a agregar el evento del dado aquí.
+  // Solo se tirará nuevamente cuando el turno termine o el jugador coma una ficha.
+}
+
 
     function mostrarTurno() {
       const jugador = nombresColores[turnoActual];
