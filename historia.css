@@ -39,7 +39,7 @@ body {
   position: relative;
   gap: 32px; /* Espacio entre columnas */
   z-index: 10; /* Encima del fondo y figuras */
-  background-color: #2f2f52 ;
+  background-color: #2f2f52;
 }
 /* Columnas internas del recuadro */
 .recuadros-reglas .columna {
@@ -298,4 +298,45 @@ body {
 .figura:nth-child(10) {
   left: 90%;
   animation-duration: 11s;
+}
+/* ----------------------
+   BOTÓN DE SONIDO (ON/OFF)
+----------------------- */
+.boton-sonido {
+  position: fixed; /* <- la clave: saca el botón del flujo del nav */
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+.boton-sonido img {
+  width: 35px;
+  height: 35px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Efecto al pasar el mouse */
+.boton-sonido:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px cyan);
+}
+
+/* Animación suave cuando está activo */
+.boton-sonido.activo img {
+  animation: pulsoSonido 1.5s infinite;
+}
+
+@keyframes pulsoSonido {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px #00ffff);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px #00ffff);
+  }
 }

@@ -54,6 +54,43 @@ if (localStorage.getItem("musicaActiva") === "true") {
       </ul>
       </nav>
     </header>
+
+     <!--  Sonido -->
+  <div class="boton-sonido" id="botonSonido">
+  <img id="botonSonidoImg" src="imagenes/sonido-off.png" alt="Botón de sonido">
+</div>
+  
+ <!-- Botón de sonido -->
+<script>
+const musica = document.getElementById("musicaFondo");
+const botonSonido = document.getElementById("botonSonido");
+const botonSonidoImg = document.getElementById("botonSonidoImg");
+
+musica.volume = 0.4;  
+let musicaActiva = localStorage.getItem("musicaActiva") === "true";
+
+// Si estaba activada antes, reproducir y mostrar imagen correcta
+if (musicaActiva) {
+  musica.play().catch(() => {});
+  botonSonidoImg.src = "imagenes/sonido-on.png";
+  botonSonido.classList.add("activo");
+}
+
+// Evento de click
+botonSonido.addEventListener("click", () => {
+  if (musica.paused) {
+    musica.play();
+    botonSonidoImg.src = "imagenes/sonido-on.png";
+    botonSonido.classList.add("activo");
+    localStorage.setItem("musicaActiva", "true");
+  } else {
+    musica.pause();
+    botonSonidoImg.src = "imagenes/sonido-off.png";
+    botonSonido.classList.remove("activo");
+    localStorage.setItem("musicaActiva", "false");
+  }
+});
+</script>
     
     <!--titulo-->
        <div class="titulos">
